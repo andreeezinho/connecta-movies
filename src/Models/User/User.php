@@ -15,6 +15,7 @@ class User {
     public $cpf;
     public $telefone;
     public $senha;
+    public $is_admin;
     public $ativo;
     public $icone;
     public $created_at;
@@ -31,6 +32,7 @@ class User {
         $user->cpf = $data['cpf'] ?? null;
         $user->telefone = $data['telefone'] ?? null;
         $user->senha = password_hash($data['senha'], PASSWORD_BCRYPT);
+        $user->ativo = ($data['is_admin'] == "") ? 0 : $data['is_admin'];
         $user->ativo = ($data['ativo'] == "") ? 1 : $data['ativo'];
         $user->icone = ($data['icone'] == "") ? "default.png" : $data['icone'];
         $user->created_at = $data['created_at'] ?? null;

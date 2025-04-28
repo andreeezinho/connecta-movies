@@ -32,7 +32,7 @@ $userPerfilController = $container->get(UserPerfilController::class);
 $router->create("GET", "/404", [$notFoundController, 'index']);
 
 //login e logout
-$router->create("GET", "/", [$userController, 'login'], null);
+$router->create("GET", "/login", [$userController, 'login'], null);
 $router->create("POST", "/login", [$userController, 'auth'], null);
 $router->create("GET", "/logout", [$userController, 'logout'], $auth);
 
