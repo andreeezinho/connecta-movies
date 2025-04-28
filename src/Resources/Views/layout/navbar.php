@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark px-0 px-md-5">
     <div class="container-fluid">
         <a class="navbar-brand ml-5" href="/dashboard">
-            <img src="<?= URL_SITE ?>/public/img/site/logo.png" alt="Logo" class="logo">
+            <img src="<?= LOGO ?>" alt="Logo" class="logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

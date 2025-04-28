@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<?= URL_SITE ?>/public/img/site/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= LOGO ?>" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="<?= URL_SITE ?>/public/css/style.css">
@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <form action="/login" method="POST">
                         <div class="my-4 text-center">
-                            <img src="<?= URL_SITE ?>/public/img/site/logo.png" alt="Logo site" class="col-3 mx-auto mb-5 bg-danger">
+                            <img src="<?= LOGO ?>" alt="Logo site" class="col-3 mx-auto mb-5 bg-danger">
                             <h3 class="my-3">Login</h3>
                         </div>
 
