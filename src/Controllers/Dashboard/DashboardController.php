@@ -4,6 +4,7 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\Controller;
 use App\Config\Auth;
+use App\Interfaces\IUser;
 use App\Repositories\User\UserRepository;
 
 class DashboardController extends Controller {
@@ -11,10 +12,10 @@ class DashboardController extends Controller {
     protected $auth;
     protected $userRepository;
 
-    public function __construct(){
+    public function __construct(IUser $userRepository){
         parent::__construct();
         $this->auth = new Auth();
-        $this->userRepository = new UserRepository();
+        $this->userRepository = $userRepository;
     }
 
     public function index(){
