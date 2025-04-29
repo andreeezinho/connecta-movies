@@ -10,7 +10,6 @@ function readImage(){
 
 async function searchAddress(){
     var cep = document.getElementById("cep").value
-    var endereco
 
     try{
         const response = await fetch("https://viacep.com.br/ws/"+cep+"/json/", {
@@ -20,7 +19,7 @@ async function searchAddress(){
               }
         })
 
-        endereco = await response.json()
+        var endereco = await response.json()
     }catch(error){
         console.log("Requisição não encontrada")
     }
