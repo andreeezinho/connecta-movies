@@ -5,6 +5,8 @@ namespace App\Controllers\Permissao;
 use App\Request\Request;
 use App\Config\Auth;
 use App\Controllers\Controller;
+use App\Interfaces\Permissao\IPermissao;
+use App\Interfaces\User\IUser;
 use App\Repositories\Permissao\PermissaoRepository;
 use App\Repositories\User\UserRepository;
 
@@ -13,10 +15,10 @@ class PermissaoController extends Controller {
     protected $permissaoRepository;
     protected $userRepository;
 
-    public function __construct(){
+    public function __construct(IPermissao $permissaoRepository, IUser $userRepository){
         parent::__construct();
-        $this->permissaoRepository = new PermissaoRepository();
-        $this->userRepository = new UserRepository();
+        $this->permissaoRepository = $permissaoRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request){
