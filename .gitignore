@@ -1,4 +1,10 @@
 public/img/user/icons/**
+public/img/conteudos/capas/filmes/**
+public/img/conteudos/capas/series/**
+public/img/conteudos/banners/series/**
+public/img/conteudos/banners/series/**
+public/conteudos/filmes/**
+public/conteudos/series/**
 src/env/app.php
 .phpunit.cache
 vendor
