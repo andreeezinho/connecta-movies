@@ -13,6 +13,10 @@
     background-color: #dddbdb;
 }
 
+.logo-navbar{
+    width: 80px;
+}
+
 .logo{
     width: 120px;
 }
@@ -61,4 +65,9 @@
     transition: all 0.3s ease;
     box-shadow: 0 0 10px black;
     cursor: pointer;
+}
+
+.capa{
+    width: 100%;
+    height: 300px;
 }
