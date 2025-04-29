@@ -4,7 +4,7 @@ namespace App\Interfaces\Filme;
 
 interface IFilme {
 
-    public function all(array $params);
+    public function all(array $params = []);
 
     public function create(array $data);
 

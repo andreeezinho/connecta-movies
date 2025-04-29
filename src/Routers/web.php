@@ -10,6 +10,7 @@ use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\Permissao\PermissaoController;
 use App\Controllers\Permissao\PermissaoUserController;
 use App\Controllers\User\UserPerfilController;
+use App\Controllers\Filme\FilmeController;
 
 
 $router = new Router();
@@ -25,6 +26,7 @@ $dashboardController = $container->get(DashboardController::class);
 $permissaoController = $container->get(PermissaoController::class);
 $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
+$filmeController = $container->get(FilmeController::class);
 
 //rotas
 
@@ -66,5 +68,8 @@ $router->create("POST", "/perfil/icone", [$userPerfilController, 'updateIcone'],
 $router->create("POST", "/perfil/editar", [$userPerfilController, 'updateDados'], $auth);
 $router->create("POST", "/perfil/senha", [$userPerfilController, 'updateSenha'], $auth);
 $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $auth);
+
+//filmes
+$router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
 
 return $router;

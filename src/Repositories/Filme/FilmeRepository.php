@@ -22,7 +22,7 @@ class FilmeRepository implements IFilme {
         $this->model = new Filme();
     }
 
-    public function all(array $params){
+    public function all(array $params = []){
         $sql = "SELECT * FROM " . self::TABLE;
     
         $conditions = [];
