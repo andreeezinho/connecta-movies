@@ -4,7 +4,7 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\Controller;
 use App\Config\Auth;
-use App\Interfaces\IUser;
+use App\Interfaces\User\IUser;
 use App\Repositories\User\UserRepository;
 
 class DashboardController extends Controller {
