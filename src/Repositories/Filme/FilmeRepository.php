@@ -54,6 +54,16 @@ class FilmeRepository implements IFilme {
     public function create(array $data){
         $filme = $this->model->create($data);
 
+        $imagem = createImage($data['imagem'], '/conteudos/capas/filmes');
+
+        $banner = createImage($data['banner'], '/conteudos/banners/filmes');
+
+        $video = createVideo($data['filme'], '/filmes');
+
+        if(is_null($video)){
+            return null;
+        }
+
         try{
             $sql = "INSERT INTO " . self::TABLE . "
                 set
@@ -71,9 +81,9 @@ class FilmeRepository implements IFilme {
                 'uuid' => $filme->uuid,
                 'nome' => $filme->nome,
                 'descricao' => $filme->descricao,
-                'imagem' => $filme->imagem,
-                'banner' => $filme->banner,
-                'path' => $filme->path
+                'imagem' => $imagem['arquivo_nome'],
+                'banner' => $banner['arquivo_nome'],
+                'path' => $video['arquivo_nome']
             ]);
 
             if(!$create){

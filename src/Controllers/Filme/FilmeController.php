@@ -27,4 +27,30 @@ class FilmeController extends Controller {
         ]);
     }
 
+    public function store(Request $request){
+        $data = $request->getBodyParams();
+
+        if(isset($_FILES['imagem'])){
+            $data['imagem'] = $_FILES['imagem'];
+        }
+
+        if(isset($_FILES['banner'])){
+            $data['banner'] = $_FILES['banner'];
+        }
+
+        if(isset($_FILES['filme'])){
+            $data['filme'] = $_FILES['filme'];
+        }
+        
+        $create = $this->filmeRepository->create($data);
+
+        if(is_null($create)){
+            return $this->router->view('filme/index', [
+                'erro' => 'Erro ao enviar o filme'
+            ]);
+        }
+
+        return $this->router->redirect('filmes');
+    }
+
 }
