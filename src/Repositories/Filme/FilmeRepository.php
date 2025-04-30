@@ -66,7 +66,7 @@ class FilmeRepository implements IFilme {
 
         try{
             $sql = "INSERT INTO " . self::TABLE . "
-                set
+                SET
                     uuid = :uuid,
                     nome = :nome,
                     descricao = :descricao,
@@ -78,12 +78,12 @@ class FilmeRepository implements IFilme {
             $stmt = $this->conn->prepare($sql);
 
             $create = $stmt->execute([
-                'uuid' => $filme->uuid,
-                'nome' => $filme->nome,
-                'descricao' => $filme->descricao,
-                'imagem' => $imagem['arquivo_nome'] ?? 'default.png',
-                'banner' => $banner['arquivo_nome'] ?? 'default.png',
-                'path' => $video['arquivo_nome']
+                ':uuid' => $filme->uuid,
+                ':nome' => $filme->nome,
+                ':descricao' => $filme->descricao,
+                ':imagem' => $imagem['arquivo_nome'] ?? 'default.png',
+                ':banner' => $banner['arquivo_nome'] ?? 'default.png',
+                ':path' => $video['arquivo_nome']
             ]);
 
             if(!$create){
@@ -100,8 +100,74 @@ class FilmeRepository implements IFilme {
     }
 
     public function update(array $data, int $id){
+        $filme = $this->model->create($data);
+
         try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET
+                    nome = :nome,
+                    descricao = :descricao,
+                    ativo = :ativo
+                WHERE
+                    id = :id
+            ";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $update = $stmt->execute([
+                ':nome' => $filme->nome,
+                ':descricao' => $filme->descricao,
+                ':ativo' => $filme->ativo,
+                ':id' => $id
+            ]);
+
+            if(!$update){
+                return null;
+            }
+
+            return $this->findById($id);
             
+            
+        }catch(\Throwable $th){
+            return null;
+        }finally{
+            Database::getInstance()->closeConnection();
+        }
+    }
+
+    public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){
+        $delete = removeImage($oldImage, $dir);
+
+        if(!$delete){
+            return null;
+        }
+
+        $newImage = createImage($image, $dir);
+
+        if(is_null($newImage)){
+            return null;
+        }
+
+        try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET
+                    {$type} = :image
+                WEHRE
+                    id = :id
+            ";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $update = $stmt->execute([
+                ':image' => $newImage['arquivo_nome'],
+                ':id' => $id
+            ]);
+
+            if(is_null($update)){
+                return null;
+            }
+
+            return $this->findById($id);
         }catch(\Throwable $th){
             return null;
         }finally{

@@ -74,5 +74,8 @@ $router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
 $router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
 $router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
 $router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
 
 return $router;

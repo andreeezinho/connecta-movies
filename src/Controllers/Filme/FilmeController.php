@@ -65,8 +65,53 @@ class FilmeController extends Controller {
         }
 
         return $this->router->view('filme/edit', [
-            'filme' => $filme
+            'filme' => $filme,
+            'edit' => true
         ]);
+    }
+
+    public function update(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        $data = $request->getBodyParams();
+        
+        $update = $this->filmeRepository->update($data, $filme->id);
+
+        if(is_null($update)){
+            return $this->router->view('filme/edit', [
+                'filme' => $filme,
+                'erro' => "Erro ao editar o filme"
+            ]);
+        }
+
+        return $this->router->redirect('filmes/'.$filme->uuid.'/editar/imagens');
+    }
+
+    public function editImages(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('filme/edit-image', [
+            'filme' => $filme,
+            'edit_image' => true
+        ]);
+    }
+
+    public function updateImages(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        $data = $request->getBodyParams();
     }
 
 }

@@ -16,13 +16,17 @@
                         <a href="/filmes" class="text-decoration-none text-muted">Filmes</a>
                     </li>
 
-                    <li class="breadcrumb-item">Editar</li>
+                    <li class="breadcrumb-item">
+                        <a href="/filmes/<?= $filme->uuid ?>/editar" class="text-decoration-none text-muted">Editar</a>
+                    </li>
+
+                    <li class="breadcrumb-item">Banner & Capa</li>
                 </ol>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <form action="/filmes/<?= $filme->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1">
+            <form action="/filmes/<?= $filme->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
