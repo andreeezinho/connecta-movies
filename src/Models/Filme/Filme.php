@@ -15,6 +15,7 @@ class Filme {
     public $imagem;
     public $banner;
     public $path;
+    public $ativo;
     public $created_at;
     public $updated_at;
 
@@ -27,6 +28,7 @@ class Filme {
         $filme->imagem = ($data['imagem'] == "") ? "default.png" : $data['imagem'];
         $filme->banner = ($data['banner'] == "") ? "default.png" : $data['banner'];
         $filme->path = $data['filme'] ?? null;
+        $filme->banner = ($data['ativo'] == "") ? 1 : $data['ativo'];
         $filme->created_at = $data['created_at'] ?? null;
         $filme->updated_at = $data['updated_at'] ?? null;
         return $filme;

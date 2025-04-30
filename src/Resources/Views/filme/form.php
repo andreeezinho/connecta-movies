@@ -1,4 +1,4 @@
-<div class="col-12 col-md-12 form-group my-2 position-relative">
+<div class="col-12 col-md-12 form-group my-2 position-relative text-center">
     <label for="banner">
         <img src="<?= URL_SITE ?>/public/img/conteudos/banners/filmes/<?= (!isset($filme->banner) || $filme->banner == "default.png" || $filme->banner == "") ? "default.png" : $filme->banner ?>" alt="Banner" id="banner-preview" class="mx-auto hover-border banner-preview">
     </label>

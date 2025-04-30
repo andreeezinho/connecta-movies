@@ -57,4 +57,16 @@ class FilmeController extends Controller {
         return $this->router->redirect('filmes');
     }
 
+    public function edit(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('filme/edit', [
+            'filme' => $filme
+        ]);
+    }
+
 }

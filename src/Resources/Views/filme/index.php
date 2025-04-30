@@ -27,14 +27,45 @@
 
     <!-- filtros -->
     <div class="col-12">
-        <div class="row justify-content-center">
-            <form action="/filmes" method="GET" class="col-8 d-flex">
-                <input class="form-control mr-sm-2 me-2" type="text" name="nome" placeholder="Procure por um filme aqui" aria-label="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="bi-search"></i></button>
-            </form>
-        </div>
+        <button type="button" class="btn btn-light border p-3 me-2" data-toggle="modal" data-target="#filtro-modal">
+            <i class="bi-camera-reels"></i>
+            Filtrar usuários
+        </button>
 
         <a href="/filmes" class="btn btn-secondary">Limpar</a>
+    </div>
+
+    <div class="modal fade" id="filtro-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form action="/filmes" method="GET" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Filtrar filmes</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mt-2 text-muted">Insira as informações para filtrar</p>
+
+                    <div class="col-12 form-group my-2">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" class="form-control py-2" placeholder="Insira o nome ou email">
+                    </div>
+
+                    <div class="col-12 form-group my-2">
+                        <label for="ativo">Situação</label>
+                        <select name="ativo" id="ativo" class="form-select">
+                            <option value="" selected>Selecione situação</option>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi-search"></i> Pesquisar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="row mt-3 g-3 pb-4">
@@ -43,9 +74,54 @@
                 foreach($filmes as $filme){
         ?>
             <div class="col-12 col-md-4 col-lg-2">
-                <a href="/filme/<?= $filme->uuid ?>">
-                    <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa" alt="<?= $filme->nome ?>">
-                </a>
+                <button data-toggle="modal" data-target="#filme-<?= $filme->uuid ?>" class="border-0">
+                    <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $filme->nome ?>">
+                </button>
+
+                <div class="modal fade" id="filme-<?= $filme->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content text-dark py-2">
+                            <div class="modal-header text-center">
+                                <h5><i class="bi-camera-reels"></i></h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-muted"><?= $filme->nome ?></p>
+                                <p class="mt-3 text-muted">
+                                    <i class="bi-circle-fill small <?= ($filme->ativo == 1) ? 'text-success' : 'text-danger' ?>"></i>  
+                                    <?= ($filme->ativo == 1) ? 'Ativo' : 'Inativo' ?>
+                                </p>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <div class="">
+                                        <a href="/filmes/<?= $filme->uuid ?>/editar" class="btn btn-primary"><i class="bi-pencil-fill"></i></a>
+                                        <a href="/filmes/<?= $filme->uuid ?>" class="btn btn-dark"><i class="bi-eye-fill"></i></a>
+                                        <button data-toggle="modal" data-target="#filme-delete-<?= $filme->uuid ?>" class="btn btn-danger"><i class="bi-trash-fill"></i></button>
+
+                                        <div class="modal fade" id="filme-delete-<?= $filme->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content text-dark py-5">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="bi-camera-reels"></i> Remover filme?</h5>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <p class="">Deseja deletar o filme: <b><?= $filme->nome ?></b>?</p>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <form action="/filme/<?= $filme->uuid ?>/deletar" method="POST">
+                                                                <button type="submit" class="btn btn-danger">Deletar</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
             </div>
         <?php
                 }

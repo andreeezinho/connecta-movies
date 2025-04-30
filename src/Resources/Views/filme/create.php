@@ -47,7 +47,7 @@
                                     <div class="spinner-border mx-auto" role="status">
                                         <span class="sr-only"></span>
                                     </div>
-                                    <p>O vídeo esta sendo carregado...</p>
+                                    <p>O vídeo está sendo carregado...</p>
                                 </div>
                             </div>
                         </div>

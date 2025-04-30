@@ -73,5 +73,6 @@ $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $
 $router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
 $router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
 $router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
 
 return $router;
