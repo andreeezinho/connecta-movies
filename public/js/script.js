@@ -8,6 +8,26 @@ function readImage(){
     }
 }
 
+function readBannerImage(){
+    if (this.files && this.files[0]) {
+        var file = new FileReader();
+        file.onload = function(e) {
+            document.getElementById("banner-preview").src = e.target.result;
+        };       
+        file.readAsDataURL(this.files[0]);
+    }
+}
+
+function readCapaImage(){
+    if (this.files && this.files[0]) {
+        var file = new FileReader();
+        file.onload = function(e) {
+            document.getElementById("capa-preview").src = e.target.result;
+        };       
+        file.readAsDataURL(this.files[0]);
+    }
+}
+
 async function searchAddress(){
     var cep = document.getElementById("cep").value
 
@@ -79,6 +99,14 @@ if(document.getElementById("telefone")){
 
 if(document.getElementById("icone")){
     document.getElementById("icone").addEventListener("change", readImage, false);
+}
+
+if(document.getElementById("banner")){
+    document.getElementById("banner").addEventListener("change", readBannerImage, false);
+}
+
+if(document.getElementById("imagem")){
+    document.getElementById("imagem").addEventListener("change", readCapaImage, false);
 }
 
 if(document.getElementById("cep")){

@@ -26,7 +26,7 @@ class Filme {
         $filme->descricao = $data['descricao'] ?? null;
         $filme->imagem = ($data['imagem'] == "") ? "default.png" : $data['imagem'];
         $filme->banner = ($data['banner'] == "") ? "default.png" : $data['banner'];
-        $filme->path = $data['path'] ?? null;
+        $filme->path = $data['filme'] ?? null;
         $filme->created_at = $data['created_at'] ?? null;
         $filme->updated_at = $data['updated_at'] ?? null;
         return $filme;

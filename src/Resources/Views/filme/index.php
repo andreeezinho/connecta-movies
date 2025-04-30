@@ -58,16 +58,6 @@
     </div>
 </div>
 
-<form action="/filmes/cadastro" method="POST" enctype="multipart/form-data">
-    <input type="text" name="nome" id="nome">
-    <textarea name="descricao" id="descricao"></textarea>
-    <input type="file" name="imagem" id="imagem">
-    <input type="file" name="banner" id="banner">
-    <input type="file" name="filme" id="filme">
-
-    <button type="submit">Enviar</button>
-</form>
-
 <?php
     require_once __DIR__ . '/../layout/bottom.php';
 ?>

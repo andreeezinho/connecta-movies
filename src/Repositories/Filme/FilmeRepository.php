@@ -81,8 +81,8 @@ class FilmeRepository implements IFilme {
                 'uuid' => $filme->uuid,
                 'nome' => $filme->nome,
                 'descricao' => $filme->descricao,
-                'imagem' => $imagem['arquivo_nome'],
-                'banner' => $banner['arquivo_nome'],
+                'imagem' => $imagem['arquivo_nome'] ?? 'default.png',
+                'banner' => $banner['arquivo_nome'] ?? 'default.png',
                 'path' => $video['arquivo_nome']
             ]);
 

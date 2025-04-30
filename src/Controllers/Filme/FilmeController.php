@@ -27,6 +27,10 @@ class FilmeController extends Controller {
         ]);
     }
 
+    public function create(Request $request){
+        return $this->router->view('filme/create', []);
+    }
+
     public function store(Request $request){
         $data = $request->getBodyParams();
 
@@ -45,7 +49,7 @@ class FilmeController extends Controller {
         $create = $this->filmeRepository->create($data);
 
         if(is_null($create)){
-            return $this->router->view('filme/index', [
+            return $this->router->view('filme/create', [
                 'erro' => 'Erro ao enviar o filme'
             ]);
         }
