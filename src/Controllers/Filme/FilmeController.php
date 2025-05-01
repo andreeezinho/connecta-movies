@@ -167,4 +167,41 @@ class FilmeController extends Controller {
         return $this->router->redirect('filmes');
     }
 
+    public function allActiveMovies(Request $request){
+        $params = $request->getQueryParams();
+
+        $params = array_merge($params, ['ativo' => 1]);
+
+        $filmes = $this->filmeRepository->all($params);
+
+        return $this->router->view('filme/all-active', [
+            'filmes' => $filmes,
+            'nome' => $params['nome'] ?? null
+        ]);
+    }
+
+    public function viewInfosMovie(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('filme/view-movie', [
+            'filme' => $filme
+        ]);
+    }
+
+    public function viewMovie(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('filme/movie', [
+            'filme' => $filme
+        ]);
+    }
+
 }

@@ -73,7 +73,7 @@
             if(count($filmes) > 0){
                 foreach($filmes as $filme){
         ?>
-            <div class="col-12 col-md-4 col-lg-2">
+            <div class="col-6 col-md-4 col-lg-2">
                 <div data-toggle="modal" data-target="#filme-<?= $filme->uuid ?>" class="border-0">
                     <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $filme->nome ?>">
                 </div>

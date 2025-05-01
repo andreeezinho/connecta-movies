@@ -78,5 +78,8 @@ $router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $
 $router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
 $router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
 $router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
+$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], $auth);
+$router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
+$router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
 
 return $router;

@@ -35,7 +35,7 @@
                         <li><a class="dropdown-item" href="#">Clientes</a></li>
                     </ul>
                 </li>
-
+                
                 <li class="nav-item dropdown d-none d-md-block me-5">
                     <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuario" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?= URL_SITE ?>/public/img/user/icons/<?= $_SESSION['user']->icone ?>" alt="User Icone" class="user-icone rounded-circle">
