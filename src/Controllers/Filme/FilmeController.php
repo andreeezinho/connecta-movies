@@ -112,6 +112,40 @@ class FilmeController extends Controller {
         }
 
         $data = $request->getBodyParams();
+
+        if(isset($_FILES['imagem']) && $_FILES['imagem']['name'] != null){
+            $data['imagem'] = $_FILES['imagem'];
+
+            $update = $this
+                ->filmeRepository
+                ->updateImage('imagem', $filme->imagem, $data['imagem'], '/conteudos/capas/filmes/', $filme->id);
+
+            if(is_null($update)){
+                return $this->router->view('filme/edit-image', [
+                    'filme' => $filme,
+                    'edit_image' => true,
+                    'erro' => 'Erro ao editar imagem da capa'
+                ]);
+            }
+        }
+
+        if(isset($_FILES['banner']) && $_FILES['banner']['name'] != null){
+            $data['banner'] = $_FILES['banner'];
+
+            $update = $this
+            ->filmeRepository
+            ->updateImage('banner', $filme->banner, $data['banner'], '/conteudos/banners/filmes/', $filme->id);
+
+            if(is_null($update)){
+                return $this->router->view('filme/edit-image', [
+                    'filme' => $filme,
+                    'edit_image' => true,
+                    'erro' => 'Erro ao editar banner'
+                ]);
+            }
+        }
+
+        return $this->router->redirect('filmes');
     }
 
 }

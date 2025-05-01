@@ -152,7 +152,7 @@ class FilmeRepository implements IFilme {
             $sql = "UPDATE " . self::TABLE . "
                 SET
                     {$type} = :image
-                WEHRE
+                WHERE
                     id = :id
             ";
 
@@ -169,7 +169,7 @@ class FilmeRepository implements IFilme {
 
             return $this->findById($id);
         }catch(\Throwable $th){
-            return null;
+            dd($th);
         }finally{
             Database::getInstance()->closeConnection();
         }
