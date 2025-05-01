@@ -177,6 +177,20 @@ class FilmeRepository implements IFilme {
 
     public function delete(int $id){
         try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET 
+                    ativo = 0
+                WHERE 
+                    id = :id
+            ";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $delete = $stmt->execute([
+                ':id' => $id
+            ]);
+
+            return $delete;
             
         }catch(\Throwable $th){
             return null;

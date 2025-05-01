@@ -148,4 +148,23 @@ class FilmeController extends Controller {
         return $this->router->redirect('filmes');
     }
 
+    public function destroy(Request $request, $uuid){
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        $delete = $this->filmeRepository->delete($filme->id);
+
+        if(!$delete){
+            return $this->router->view('filme/edit-image', [
+                'filme' => $filme,
+                'erro' => 'Erro ao deletar o filme'
+            ]);
+        }
+
+        return $this->router->redirect('filmes');
+    }
+
 }

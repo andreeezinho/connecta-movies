@@ -29,7 +29,7 @@
     <div class="col-12">
         <button type="button" class="btn btn-light border p-3 me-2" data-toggle="modal" data-target="#filtro-modal">
             <i class="bi-camera-reels"></i>
-            Filtrar usuários
+            Filtrar filmes
         </button>
 
         <a href="/filmes" class="btn btn-secondary">Limpar</a>
@@ -74,9 +74,9 @@
                 foreach($filmes as $filme){
         ?>
             <div class="col-12 col-md-4 col-lg-2">
-                <button data-toggle="modal" data-target="#filme-<?= $filme->uuid ?>" class="border-0">
+                <div data-toggle="modal" data-target="#filme-<?= $filme->uuid ?>" class="border-0">
                     <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $filme->nome ?>">
-                </button>
+                </div>
 
                 <div class="modal fade" id="filme-<?= $filme->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -110,7 +110,7 @@
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                            <form action="/filme/<?= $filme->uuid ?>/deletar" method="POST">
+                                                            <form action="/filmes/<?= $filme->uuid ?>/deletar" method="POST">
                                                                 <button type="submit" class="btn btn-danger">Deletar</button>
                                                             </form>
                                                         </div>
