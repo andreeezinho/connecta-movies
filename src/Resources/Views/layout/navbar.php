@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark px-0 px-md-5">
     <div class="container-fluid">
         <a class="navbar-brand ml-5" href="/dashboard">
-            <img src="<?= LOGO ?>" alt="Logo" class="logo">
+            <img src="<?= LOGO ?>" alt="Logo" class="logo-navbar">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                         <li><a class="dropdown-item" href="#">Clientes</a></li>
                     </ul>
                 </li>
-
+                
                 <li class="nav-item dropdown d-none d-md-block me-5">
                     <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuario" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?= URL_SITE ?>/public/img/user/icons/<?= $_SESSION['user']->icone ?>" alt="User Icone" class="user-icone rounded-circle">

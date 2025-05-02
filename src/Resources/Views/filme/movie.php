@@ -9,52 +9,20 @@
     <link rel="stylesheet" href="<?= URL_SITE ?>/public/css/style.css">
     <title><?= SITE_NAME ?></title>
 </head>
+<body class="bg-dark">
+    <video controls class="movie">
+         <source src="/public/conteudos/filmes/<?= $filme->path ?>" type="video/webm" />
+     </video>
 
-<body class="bg-theme">
+     <a href="/filmes/all" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
-    <div class="container">
-      <div class="row justify-content-center align-items-center vh-100">
-            <div class="card col-sm-4 col-12">
-            <?php
-                if(isset($erro)){
-            ?>
-                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <p class="m-0 p-0"><?= $erro ?></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php
-                }
-            ?>
-
-                <div class="card-body">
-                    <form action="/login" method="POST">
-                        <div class="my-4 text-center">
-                            <img src="<?= LOGO ?>" alt="Logo site" class="col-3 mx-auto mb-5">
-                            <h3 class="my-3">Login</h3>
-                        </div>
-
-                        <div class="col-12 form-group my-3">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" class="form-control py-2" placeholder="Insira seu email">
-                        </div>
-
-                        <div class="col-12 form-group my-3">
-                            <label for="senha">Senha</label>
-                            <input type="password" id="senha" name="senha" class="form-control py-2" placeholder="Insira sua senha">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary mt-4">Entrar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+     <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $filme->nome ?></h2>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="<?= URL_SITE ?>/public/js/script.js"></script>
 </body>
 </html>

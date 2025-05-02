@@ -10,6 +10,7 @@ use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\Permissao\PermissaoController;
 use App\Controllers\Permissao\PermissaoUserController;
 use App\Controllers\User\UserPerfilController;
+use App\Controllers\Filme\FilmeController;
 
 
 $router = new Router();
@@ -25,6 +26,7 @@ $dashboardController = $container->get(DashboardController::class);
 $permissaoController = $container->get(PermissaoController::class);
 $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
+$filmeController = $container->get(FilmeController::class);
 
 //rotas
 
@@ -66,5 +68,18 @@ $router->create("POST", "/perfil/icone", [$userPerfilController, 'updateIcone'],
 $router->create("POST", "/perfil/editar", [$userPerfilController, 'updateDados'], $auth);
 $router->create("POST", "/perfil/senha", [$userPerfilController, 'updateSenha'], $auth);
 $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $auth);
+
+//filmes
+$router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
+$router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
+$router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
+$router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
+$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], $auth);
+$router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
+$router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
 
 return $router;
