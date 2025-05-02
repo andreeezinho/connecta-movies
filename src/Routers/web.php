@@ -11,6 +11,7 @@ use App\Controllers\Permissao\PermissaoController;
 use App\Controllers\Permissao\PermissaoUserController;
 use App\Controllers\User\UserPerfilController;
 use App\Controllers\Filme\FilmeController;
+use App\Controllers\Lista\ListaController;
 
 
 $router = new Router();
@@ -27,6 +28,7 @@ $permissaoController = $container->get(PermissaoController::class);
 $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
 $filmeController = $container->get(FilmeController::class);
+$listaController = $container->get(ListaController::class);
 
 //rotas
 
@@ -81,5 +83,10 @@ $router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'],
 $router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], $auth);
 $router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
 $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
+
+//lista-filme
+$router->create("GET", "/minha-lista", [$listaController, 'index'], $auth);
+$router->create("POST", "/filmes/{uuid}/favoritar", [$listaController, 'addInList'], $auth);
+
 
 return $router;

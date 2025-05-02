@@ -26,39 +26,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="filtro-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="/filmes" method="GET" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Filtrar filmes</h5>
-                </div>
-
-                <div class="modal-body">
-                    <p class="mt-2 text-muted">Insira as informações para filtrar</p>
-
-                    <div class="col-12 form-group my-2">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" class="form-control py-2" placeholder="Insira o nome ou email">
-                    </div>
-
-                    <div class="col-12 form-group my-2">
-                        <label for="ativo">Situação</label>
-                        <select name="ativo" id="ativo" class="form-select">
-                            <option value="" selected>Selecione situação</option>
-                            <option value="1">Ativo</option>
-                            <option value="0">Inativo</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><i class="bi-search"></i> Pesquisar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="row mt-3 g-3 pb-4 border rounded bg-light">
         <?php
             if(count($filmes) > 0){
