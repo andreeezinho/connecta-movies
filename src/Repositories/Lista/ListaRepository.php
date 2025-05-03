@@ -107,9 +107,35 @@ class ListaRepository implements ILista {
         }
     }
 
-    public function delete(int $id, int $usuarios_id){}
+    public function delete(int $id_conteudo, int $usuarios_id, string $tipo){
+        try{
+            $sql = "DELETE FROM " . self::TABLE . "
+                WHERE
+                    tipo = :tipo
+                AND
+                    id_conteudo = :id_conteudo
+                AND
+                    usuarios_id = :usuarios_id
+            ";
 
-    public function findByUserAndMovieId($usuarios_id, $id_conteudo, string $tipo){
+            $stmt = $this->conn->prepare($sql);
+
+            $delete = $stmt->execute([
+                ':tipo' => $tipo,
+                ':id_conteudo' => $id_conteudo,
+                ':usuarios_id' => $usuarios_id
+            ]);
+
+            return $delete;
+
+        }catch(\Throwable $th){
+            return $th;
+        }finally{
+            Database::getInstance()->closeConnection();
+        }
+    }
+
+    public function findByUserAndContentId(int $usuarios_id, int $id_conteudo, string $tipo){
         $stmt = $this->conn->prepare(
             "SELECT * FROM " . self::TABLE . " 
             WHERE 

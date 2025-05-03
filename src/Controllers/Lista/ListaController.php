@@ -38,10 +38,14 @@ class ListaController extends Controller {
         ]);
     }
 
-    public function addInList(Request $request, $uuid){
+    public function addMovieInList(Request $request, $uuid){
         $user = $this->auth->user();
 
         $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }
         
         $data = ['tipo' => 'filmes'];
 
@@ -51,7 +55,25 @@ class ListaController extends Controller {
             return $this->router->redirect('404');
         }
 
-        return $this->router->redirect('minha-lista');
+        return $this->router->redirect('filmes/'. $uuid.'/infos');
+    }
+
+    public function removeMovieFromList(Request $request, $uuid){
+        $user = $this->auth->user();
+
+        $filme = $this->filmeRepository->findByUuid($uuid);
+
+        if(!$filme){
+            return $this->router->redirect('404');
+        }     
+
+        $delete = $this->listaRepository->delete($filme->id, $user->id, 'filmes');
+
+        if(!$delete){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->redirect('filmes/'. $uuid.'/infos');
     }
 
 }

@@ -86,7 +86,8 @@ $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'
 
 //lista-filme
 $router->create("GET", "/minha-lista", [$listaController, 'index'], $auth);
-$router->create("POST", "/filmes/{uuid}/favoritar", [$listaController, 'addInList'], $auth);
+$router->create("POST", "/filmes/{uuid}/favoritar", [$listaController, 'addMovieInList'], $auth);
+$router->create("POST", "/filmes/{uuid}/desfavoritar", [$listaController, 'removeMovieFromList'], $auth);
 
 
 return $router;
