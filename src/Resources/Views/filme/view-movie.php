@@ -23,9 +23,21 @@
         </div>
 
         <div class="div col-12 mb-4 d-flex">
-            <form action="/filmes/<?= $filme->uuid ?>/favoritar" method="POST">
-                <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-bookmark-plus"></i> <p class="p-0 m-0">Minha lista</p></button>
-            </form>
+            <?php
+                if(!$movieInList){
+            ?>
+                <form action="/filmes/<?= $filme->uuid ?>/favoritar" method="POST">
+                    <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-bookmark-plus"></i> <p class="p-0 m-0">Minha lista</p></button>
+                </form>
+            <?php
+                }else{
+            ?>
+                <form action="/filmes/<?= $filme->uuid ?>/desfavoritar" method="POST">
+                    <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-bookmark-x-fill text-secondary"></i> <p class="p-0 m-0">Remover da lista</p></button>
+                </form>
+            <?php
+                }
+            ?>
 
             <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-heart-fill"></i> <p class="p-0 m-0">Avaliar</p></button>
         </div>
