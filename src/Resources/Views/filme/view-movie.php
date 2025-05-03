@@ -9,46 +9,40 @@
     <link rel="stylesheet" href="<?= URL_SITE ?>/public/css/style.css">
     <title><?= SITE_NAME ?></title>
 </head>
-
 <body class="bg-theme">
+    <img src="/public/img/conteudos/banners/filmes/<?= $filme->banner ?>" alt="Banner" class="banner-container position-relative">
 
-    <div class="container">
-      <div class="row justify-content-center align-items-center vh-100">
-            <div class="card col-sm-4 col-12">
+    <a href="/" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
+
+    <div class="movie-infos p-4">
+        <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info">
+        <h1 class="mt-3 text-light"><?= $filme->nome ?></h1>
+
+        <div class="col-12 col-md-6">
+            <p class="text-light my-3"><?= $filme->descricao ?></p>
+        </div>
+
+        <div class="div col-12 mb-4 d-flex">
             <?php
-                if(isset($erro)){
+                if(!$movieInList){
             ?>
-                <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <p class="m-0 p-0"><?= $erro ?></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                <form action="/filmes/<?= $filme->uuid ?>/favoritar" method="POST">
+                    <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-bookmark-plus"></i> <p class="p-0 m-0">Minha lista</p></button>
+                </form>
+            <?php
+                }else{
+            ?>
+                <form action="/filmes/<?= $filme->uuid ?>/desfavoritar" method="POST">
+                    <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-bookmark-x-fill text-secondary"></i> <p class="p-0 m-0">Remover da lista</p></button>
+                </form>
             <?php
                 }
             ?>
 
-                <div class="card-body">
-                    <form action="/login" method="POST">
-                        <div class="my-4 text-center">
-                            <img src="<?= LOGO ?>" alt="Logo site" class="col-3 mx-auto mb-5">
-                            <h3 class="my-3">Login</h3>
-                        </div>
-
-                        <div class="col-12 form-group my-3">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" class="form-control py-2" placeholder="Insira seu email">
-                        </div>
-
-                        <div class="col-12 form-group my-3">
-                            <label for="senha">Senha</label>
-                            <input type="password" id="senha" name="senha" class="form-control py-2" placeholder="Insira sua senha">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary mt-4">Entrar</button>
-                    </form>
-                </div>
-            </div>
+            <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-heart-fill"></i> <p class="p-0 m-0">Avaliar</p></button>
         </div>
-      </div>
+
+        <a href="/filmes/<?= $filme->uuid ?>/assistir" class="btn btn-light py-1 px-5"><i class="bi-play-fill"></i> Assita agora</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -56,5 +50,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="<?= URL_SITE ?>/public/js/script.js"></script>
 </body>
 </html>

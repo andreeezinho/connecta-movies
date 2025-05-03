@@ -5,6 +5,7 @@ namespace App\Controllers\User;
 use App\Request\Request;
 use App\Config\Auth;
 use App\Controllers\Controller;
+use App\Interfaces\User\IUser;
 use App\Repositories\User\UserRepository;
 
 class UserPerfilController extends Controller {
@@ -13,9 +14,9 @@ class UserPerfilController extends Controller {
     protected $userRepository;
     protected $usuario;
 
-    public function __construct(){
+    public function __construct(IUser $userRepository){
         parent::__construct();
-        $this->userRepository = new UserRepository;
+        $this->userRepository = $userRepository;
         $this->auth = new Auth();
         $this->usuario = $_SESSION['user'] ?? null;
     }

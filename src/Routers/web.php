@@ -6,10 +6,13 @@ use App\Config\Container;
 use App\Config\DependencyProvider;
 use App\Controllers\User\UserController;
 use App\Controllers\NotFound\NotFoundController;
+use App\Controllers\Home\HomeController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\Permissao\PermissaoController;
 use App\Controllers\Permissao\PermissaoUserController;
 use App\Controllers\User\UserPerfilController;
+use App\Controllers\Filme\FilmeController;
+use App\Controllers\Lista\ListaController;
 
 
 $router = new Router();
@@ -22,17 +25,23 @@ $dependencyProvider->register();
 $notFoundController = $container->get(NotFoundController::class);
 $userController = $container->get(UserController::class);
 $dashboardController = $container->get(DashboardController::class);
+$homeController = $container->get(HomeController::class);
 $permissaoController = $container->get(PermissaoController::class);
 $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
+$filmeController = $container->get(FilmeController::class);
+$listaController = $container->get(ListaController::class);
 
 //rotas
 
 //not-found
 $router->create("GET", "/404", [$notFoundController, 'index']);
 
+//home
+$router->create("GET", "/", [$homeController, 'index']);
+
 //login e logout
-$router->create("GET", "/", [$userController, 'login'], null);
+$router->create("GET", "/login", [$userController, 'login'], null);
 $router->create("POST", "/login", [$userController, 'auth'], null);
 $router->create("GET", "/logout", [$userController, 'logout'], $auth);
 
@@ -66,5 +75,24 @@ $router->create("POST", "/perfil/icone", [$userPerfilController, 'updateIcone'],
 $router->create("POST", "/perfil/editar", [$userPerfilController, 'updateDados'], $auth);
 $router->create("POST", "/perfil/senha", [$userPerfilController, 'updateSenha'], $auth);
 $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $auth);
+
+//filmes
+$router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
+$router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
+$router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
+$router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
+$router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
+$router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
+$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies']);
+$router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
+$router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
+
+//lista-filme
+$router->create("GET", "/minha-lista", [$listaController, 'index'], $auth);
+$router->create("POST", "/filmes/{uuid}/favoritar", [$listaController, 'addMovieInList'], $auth);
+$router->create("POST", "/filmes/{uuid}/desfavoritar", [$listaController, 'removeMovieFromList'], $auth);
+
 
 return $router;

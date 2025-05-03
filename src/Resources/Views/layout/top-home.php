@@ -15,5 +15,3 @@
                 require_once('navbar.php');
             ?>
         </header>
-
-        <section class="vertical-size pt-5">
