@@ -7,14 +7,20 @@ use App\Config\Auth;
 use App\Controllers\Controller;
 use App\Repositories\Filme\FilmeRepository;
 use App\Interfaces\Filme\IFilme;
+use App\Repositories\Lista\ListaRepository;
+use App\Interfaces\Lista\ILista;
 
 class FilmeController extends Controller {
 
     protected $filmeRepository;
+    protected $listaRepository;
+    protected $auth;
 
-    public function __construct(IFilme $filmeRepository){
+    public function __construct(IFilme $filmeRepository, ListaRepository $listaRepository, Auth $auth){
         parent::__construct();
         $this->filmeRepository = $filmeRepository;
+        $this->listaRepository = $listaRepository;
+        $this->auth = $auth;
     }
 
     public function index(Request $request){
@@ -181,14 +187,19 @@ class FilmeController extends Controller {
     }
 
     public function viewInfosMovie(Request $request, $uuid){
+        $user = $this->auth->user();
+
         $filme = $this->filmeRepository->findByUuid($uuid);
 
         if(!$filme){
             return $this->router->redirect('404');
         }
 
+        $movieInList = $this->listaRepository->findByUserAndMovieId($user->id, $filme->id, 'filmes');
+        
         return $this->router->view('filme/view-movie', [
-            'filme' => $filme
+            'filme' => $filme,
+            'movieInList' => $movieInList
         ]);
     }
 

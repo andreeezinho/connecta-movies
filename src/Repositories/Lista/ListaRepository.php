@@ -109,4 +109,31 @@ class ListaRepository implements ILista {
 
     public function delete(int $id, int $usuarios_id){}
 
+    public function findByUserAndMovieId($usuarios_id, $id_conteudo, string $tipo){
+        $stmt = $this->conn->prepare(
+            "SELECT * FROM " . self::TABLE . " 
+            WHERE 
+                tipo = :tipo
+            AND
+                usuarios_id = :usuarios_id 
+            AND
+                id_conteudo = :id_conteudo"
+        );
+
+        $stmt->execute([
+            ':usuarios_id' => $usuarios_id,
+            ':id_conteudo' => $id_conteudo,
+            ':tipo' => $tipo
+        ]);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::CLASS_NAME);
+        $result = $stmt->fetch();
+
+        if(is_null($result)){
+            return null;
+        }
+
+        return $result;
+    }
+
 }
