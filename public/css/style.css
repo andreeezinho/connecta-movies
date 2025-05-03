@@ -124,6 +124,12 @@
     cursor: pointer;
 }
 
+.banner-carousel{
+    min-height: 80vh;
+    max-height: 80vh;
+    filter: brightness(0.50) opacity(0.80);
+}
+
 @media(min-width: 721px){
     .capa-preview{
         position: absolute;
@@ -163,4 +169,10 @@
         bottom: 20px;
         left: 10px;
     }
+
+    .banner-carousel{
+        min-height: 20vh;
+        max-height: 20vh;
+    }
+    
 }

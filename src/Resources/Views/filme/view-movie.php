@@ -12,7 +12,7 @@
 <body class="bg-theme">
     <img src="/public/img/conteudos/banners/filmes/<?= $filme->banner ?>" alt="Banner" class="banner-container position-relative">
 
-    <a href="/filmes/all" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
+    <a href="/" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
     <div class="movie-infos p-4">
         <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info">
