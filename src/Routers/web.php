@@ -6,6 +6,7 @@ use App\Config\Container;
 use App\Config\DependencyProvider;
 use App\Controllers\User\UserController;
 use App\Controllers\NotFound\NotFoundController;
+use App\Controllers\Home\HomeController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\Permissao\PermissaoController;
 use App\Controllers\Permissao\PermissaoUserController;
@@ -24,6 +25,7 @@ $dependencyProvider->register();
 $notFoundController = $container->get(NotFoundController::class);
 $userController = $container->get(UserController::class);
 $dashboardController = $container->get(DashboardController::class);
+$homeController = $container->get(HomeController::class);
 $permissaoController = $container->get(PermissaoController::class);
 $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
@@ -34,6 +36,9 @@ $listaController = $container->get(ListaController::class);
 
 //not-found
 $router->create("GET", "/404", [$notFoundController, 'index']);
+
+//home
+$router->create("GET", "/", [$homeController, 'index']);
 
 //login e logout
 $router->create("GET", "/login", [$userController, 'login'], null);
@@ -80,7 +85,7 @@ $router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $
 $router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
 $router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
 $router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
-$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], $auth);
+$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies']);
 $router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
 $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
 

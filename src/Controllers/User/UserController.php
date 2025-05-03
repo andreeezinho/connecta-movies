@@ -134,7 +134,7 @@ class UserController extends Controller {
         $auth = new Auth();
 
         if($auth->check()){
-            return $this->router->redirect('dashboard');
+            return $this->router->redirect('');
         }
 
         return $this->router->view('login/login', []);
@@ -148,7 +148,7 @@ class UserController extends Controller {
         $auth = new Auth();
 
         if($auth->login($user)){
-            return $this->router->redirect('dashboard');
+            return $this->router->redirect('');
         }
 
         return $this->router->view('login/login', [
@@ -160,7 +160,7 @@ class UserController extends Controller {
         $auth = new Auth();
         $auth->logout();
         
-        return $this->router->redirect('login');
+        return $this->router->redirect('');
     }
 
 }

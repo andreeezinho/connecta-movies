@@ -14,7 +14,7 @@
          <source src="/public/conteudos/filmes/<?= $filme->path ?>" type="video/webm" />
      </video>
 
-     <a href="/filmes/all" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
+     <a href="/filmes/<?= $filme->uuid ?>/infos" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
      <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $filme->nome ?></h2>
 

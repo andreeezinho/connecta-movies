@@ -51,6 +51,22 @@ class FilmeRepository implements IFilme {
         return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
     }
 
+    public function randomMovies(){
+        $sql = "SELECT * FROM " . self::TABLE ."
+            WHERE
+                ativo = :ativo
+            ORDER BY RAND()
+            LIMIT 10";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([
+            ':ativo' => 1
+        ]);
+
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
+    }
+
     public function create(array $data){
         $filme = $this->model->create($data);
 

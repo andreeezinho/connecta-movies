@@ -6,6 +6,8 @@ interface IFilme {
 
     public function all(array $params = []);
 
+    public function randomMovies();
+
     public function create(array $data);
 
     public function update(array $data, int $id);
