@@ -12,6 +12,8 @@ use App\Interfaces\Filme\IFilme;
 use App\Repositories\Filme\FilmeRepository;
 use App\Interfaces\Lista\ILista;
 use App\Repositories\Lista\ListaRepository;
+use App\Interfaces\Serie\ISerie;
+use App\Repositories\Serie\SerieRepository;
 
 class DependencyProvider {
 
@@ -52,6 +54,13 @@ class DependencyProvider {
                 ILista::class,
                 new ListaRepository()
             );
+
+        $this->container
+            ->set(
+                ISerie::class,
+                new SerieRepository()
+            );
+
 
     }
 

@@ -13,6 +13,7 @@ use App\Controllers\Permissao\PermissaoUserController;
 use App\Controllers\User\UserPerfilController;
 use App\Controllers\Filme\FilmeController;
 use App\Controllers\Lista\ListaController;
+use App\Controllers\Serie\SerieController;
 
 
 $router = new Router();
@@ -31,6 +32,7 @@ $permissaoUserController = $container->get(PermissaoUserController::class);
 $userPerfilController = $container->get(UserPerfilController::class);
 $filmeController = $container->get(FilmeController::class);
 $listaController = $container->get(ListaController::class);
+$serieController = $container->get(SerieController::class);
 
 //rotas
 
@@ -93,6 +95,11 @@ $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'
 $router->create("GET", "/minha-lista", [$listaController, 'index'], $auth);
 $router->create("POST", "/filmes/{uuid}/favoritar", [$listaController, 'addMovieInList'], $auth);
 $router->create("POST", "/filmes/{uuid}/desfavoritar", [$listaController, 'removeMovieFromList'], $auth);
+
+//series
+$router->create("GET", "/dashboard/series", [$serieController, 'index'], $auth);
+$router->create("GET", "/dashboard/series/cadastro", [$serieController, 'create'], $auth);
+$router->create("POST", "/dashboard/series/cadastro", [$serieController, 'store'], $auth);
 
 
 return $router;
