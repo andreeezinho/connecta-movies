@@ -57,7 +57,114 @@ class SerieController extends Controller {
         }
 
         return $this->router->redirect('dashboard/series');
+    }
 
+    public function edit(Request $request, $uuid){
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('serie/edit', [
+            'serie' => $serie,
+            'edit' => true
+        ]);
+    }
+
+    public function update(Request $request, $uuid){
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        $data = $request->getBodyParams();
+
+        $update = $this->serieRepository->update($data, $serie->id);
+
+        if(is_null($update)){
+            return $this->router->view('serie/edit', [
+                'serie' => $serie,
+                'edit' => true,
+                'erro' => 'Erro ao editar série'
+            ]);
+        }
+
+        return $this->router->redirect('dashboard/series/'.$serie->uuid.'/editar/imagens');
+    }
+
+    public function editImages(Request $request, $uuid){
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('serie/edit-image', [
+            'serie' => $serie,
+            'edit_image' => true
+        ]);
+    }
+
+    public function updateImages(Request $request, $uuid){
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        $data = $request->getBodyParams();
+
+        if(isset($_FILES['imagem']) && $_FILES['imagem']['name'] != null){
+            $data['imagem'] = $_FILES['imagem'];
+
+            $update = $this
+                ->serieRepository
+                ->updateImage('imagem', $serie->imagem, $data['imagem'], '/conteudos/capas/series/', $serie->id);
+
+            if(is_null($update)){
+                return $this->router->view('serie/edit-image', [
+                    'serie' => $serie,
+                    'edit_image' => true,
+                    'erro' => 'Erro ao editar imagem da capa'
+                ]);
+            }
+        }
+
+        if(isset($_FILES['banner']) && $_FILES['banner']['name'] != null){
+            $data['banner'] = $_FILES['banner'];
+
+            $update = $this
+            ->serieRepository
+            ->updateImage('banner', $serie->banner, $data['banner'], '/conteudos/banners/series/', $serie->id);
+
+            if(is_null($update)){
+                return $this->router->view('serie/edit-image', [
+                    'serie' => $serie,
+                    'edit_image' => true,
+                    'erro' => 'Erro ao editar banner'
+                ]);
+            }
+        }
+
+        return $this->router->redirect('dashboard/series');
+    }
+
+    public function destroy(Request $request, $uuid){
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        $delete = $this->serieRepository->delete($serie->id);
+
+        if(!$delete){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->redirect('dashboard/series');
     }
 
 }

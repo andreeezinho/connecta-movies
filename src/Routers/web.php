@@ -100,6 +100,11 @@ $router->create("POST", "/filmes/{uuid}/desfavoritar", [$listaController, 'remov
 $router->create("GET", "/dashboard/series", [$serieController, 'index'], $auth);
 $router->create("GET", "/dashboard/series/cadastro", [$serieController, 'create'], $auth);
 $router->create("POST", "/dashboard/series/cadastro", [$serieController, 'store'], $auth);
+$router->create("GET", "/dashboard/series/{uuid}/editar", [$serieController, 'edit'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/editar", [$serieController, 'update'], $auth);
+$router->create("GET", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'editImages'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'updateImages'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/deletar", [$serieController, 'destroy'], $auth);
 
 
 return $router;

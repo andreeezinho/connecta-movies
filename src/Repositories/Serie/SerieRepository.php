@@ -109,10 +109,103 @@ class SerieRepository implements ISerie {
         }
     }
 
-    public function update(array $data, int $id){}
+    public function update(array $data, int $id){
+        $serie = $this->model->create($data);
 
-    public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){}
+        try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET
+                    nome = :nome,
+                    descricao = :descricao,
+                    ativo = :ativo
+                WHERE
+                    id = :id
+            ";
 
-    public function delete(int $id){}
+            $stmt = $this->conn->prepare($sql);
+
+            $update = $stmt->execute([
+                ':nome' => $serie->nome,
+                ':descricao' => $serie->descricao,
+                ':ativo' => $serie->ativo,
+                ':id' => $id
+            ]);
+
+            if(!$update){
+                return null;
+            }
+
+            return $this->findById($id);
+
+        }catch (\Throwable $th){
+            return null;
+        }finally{
+            Database::getInstance()->closeConnection();
+        }
+    }
+
+    public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){
+        $delete = removeImage($oldImage, $dir);
+
+        if(!$delete){
+            return null;
+        }
+
+        $newImage = createImage($image, $dir);
+
+        if(is_null($newImage)){
+            return null;
+        }
+
+        try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET
+                    {$type} = :image
+                WHERE
+                    id = :id
+            ";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $update = $stmt->execute([
+                ':image' => $newImage['arquivo_nome'],
+                ':id' => $id
+            ]);
+
+            if(is_null($update)){
+                return null;
+            }
+
+            return $this->findById($id);
+        }catch(\Throwable $th){
+            dd($th);
+        }finally{
+            Database::getInstance()->closeConnection();
+        }
+    }
+
+    public function delete(int $id){
+        try{
+            $sql = "UPDATE " . self::TABLE . "
+                SET 
+                    ativo = 0
+                WHERE 
+                    id = :id
+            ";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $delete = $stmt->execute([
+                ':id' => $id
+            ]);
+
+            return $delete;
+            
+        }catch(\Throwable $th){
+            return null;
+        }finally{
+            Database::getInstance()->closeConnection();
+        }
+    }
 
 }

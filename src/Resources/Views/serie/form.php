@@ -3,12 +3,12 @@
 ?>
     <div class="col-12 col-md-12 form-group my-2 position-relative text-center">
         <label for="banner">
-            <img src="<?= URL_SITE ?>/public/img/conteudos/banners/filmes/<?= (!isset($serie->banner) || $serie->banner == "default.png" || $serie->banner == "") ? "default.png" : $filme->banner ?>" alt="Banner" id="banner-preview" class="mx-auto hover-border banner-preview">
+            <img src="<?= URL_SITE ?>/public/img/conteudos/banners/series/<?= (!isset($serie->banner) || $serie->banner == "default.png" || $serie->banner == "") ? "default.png" : $serie->banner ?>" alt="Banner" id="banner-preview" class="mx-auto hover-border banner-preview">
         </label>
         <input type="file" name="banner" id="banner" class="d-none">
 
         <label for="imagem">
-            <img src="<?= URL_SITE ?>/public/img/conteudos/capas/filmes/<?= (!isset($serie->imagem) || $serie->imagem == "default.png" || $serie->imagem == "") ? "default.png" : $filme->imagem ?>" alt="Banner" id="capa-preview" class="mx-auto hover-border capa-preview">
+            <img src="<?= URL_SITE ?>/public/img/conteudos/capas/series/<?= (!isset($serie->imagem) || $serie->imagem == "default.png" || $serie->imagem == "") ? "default.png" : $serie->imagem ?>" alt="Banner" id="capa-preview" class="mx-auto hover-border capa-preview">
         </label>
         <input type="file" name="imagem" id="imagem" class="d-none">
     </div>
