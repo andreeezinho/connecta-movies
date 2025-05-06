@@ -6,20 +6,24 @@ use App\Request\Request;
 use App\Config\Auth;
 use App\Controllers\Controller;
 use App\Repositories\Filme\FilmeRepository;
+use App\Repositories\Serie\SerieRepository;
 use App\Repositories\Lista\ListaRepository;
 use App\Interfaces\Filme\IFilme;
+use App\Interfaces\Serie\ISerie;
 use App\Interfaces\Lista\ILista;
 
 class ListaController extends Controller {
 
     protected $listaRepository;
     protected $filmeRepository;
+    protected $serieRepository;
     protected $auth;
 
-    public function __construct(ILista $listaRepository, IFilme $filmeRepository, Auth $auth){
+    public function __construct(ILista $listaRepository, IFilme $filmeRepository, ISerie $serieRepository, Auth $auth){
         parent::__construct();
         $this->listaRepository = $listaRepository;
         $this->filmeRepository = $filmeRepository;
+        $this->serieRepository = $serieRepository;
         $this->auth = $auth;
     }
 
@@ -74,6 +78,44 @@ class ListaController extends Controller {
         }
 
         return $this->router->redirect('filmes/'. $uuid.'/infos');
+    }
+
+    public function addSerieInList(Request $request, $uuid){
+        $user = $this->auth->user();
+
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+        
+        $data = ['tipo' => 'series'];
+
+        $add = $this->listaRepository->create($data, $serie->id, $user->id);
+
+        if(is_null($add)){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->redirect('series/'.$uuid.'/infos');
+    }
+
+    public function removeSerieFromList(Request $request, $uuid){
+        $user = $this->auth->user();
+
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }     
+
+        $delete = $this->listaRepository->delete($serie->id, $user->id, 'series');
+
+        if(!$delete){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->redirect('series/'.$uuid.'/infos');
     }
 
 }

@@ -18,7 +18,7 @@
                 </li>
 
                 <li class="nav-item d-none d-md-block">
-                    <a href="#" class="nav-link">Séries</a>
+                    <a href="/series" class="nav-link">Séries</a>
                 </li>
 
                 <?php

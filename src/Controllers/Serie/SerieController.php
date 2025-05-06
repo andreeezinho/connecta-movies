@@ -167,4 +167,36 @@ class SerieController extends Controller {
         return $this->router->redirect('dashboard/series');
     }
 
+    public function allActiveSeries(Request $request){
+        $params = $request->getQueryParams();
+
+        $params = array_merge($params, ['ativo' => 1]);
+
+        $series = $this->serieRepository->all($params);
+
+        return $this->router->view('serie/all-active', [
+            'series' => $series,
+            'nome' => $params['nome'] ?? null
+        ]);
+    }
+
+    public function viewInfosSerie(Request $request, $uuid){
+        $user = $this->auth->user();
+
+        $serie = $this->serieRepository->findByUuid($uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        $serieInList = $this->listaRepository->findByUserAndContentId($user->id, $serie->id, 'series');
+        
+        return $this->router->view('serie/view-movie', [
+            'serie' => $serie,
+            'serieInList' => $serieInList
+        ]);
+    }
+
+
+
 }
