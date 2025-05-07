@@ -32,12 +32,15 @@ class ListaController extends Controller {
         
         $params = $request->getQueryParams();
         
-        $params = array_merge($params, ['tipo' => 'filmes','ativo' => 1]);
+        $filmes = array_merge($params, ['tipo' => 'filmes','ativo' => 1]);
+        $series = array_merge($params, ['tipo' => 'series','ativo' => 1]);
 
-        $lista_filmes = $this->listaRepository->all($params, $user->id);
+        $lista_filmes = $this->listaRepository->all($filmes, $user->id);
+        $lista_series = $this->listaRepository->all($series, $user->id);
 
         return $this->router->view('lista/index', [
             'filmes' => $lista_filmes,
+            'series' => $lista_series,
             'nome' => $params['nome'] ?? null
         ]);
     }
