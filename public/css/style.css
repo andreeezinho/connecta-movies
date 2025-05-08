@@ -84,7 +84,7 @@
 
 .movie-infos{
     position: absolute;
-    bottom: 100px;
+    bottom: 20px;
     left: 10px;
 }
 
@@ -130,6 +130,15 @@
     object-fit: cover;
     object-position: 50% 0;
     filter: brightness(0.30) opacity(1.0);
+}
+
+.width-0{
+    max-width: min-content;
+}
+
+.eps-button{
+    position: absolute;
+    bottom: 0;
 }
 
 @media(min-width: 721px){

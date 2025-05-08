@@ -199,7 +199,7 @@ class SerieController extends Controller {
 
         $serieInList = $this->listaRepository->findByUserAndContentId($user->id, $serie->id, 'series');
 
-        $allActiveSeasons = $this->temporadaRepository->all($params);
+        $allActiveSeasons = $this->temporadaRepository->all(['ativo' => 1]);
 
         return $this->router->view('serie/view-serie', [
             'serie' => $serie,

@@ -42,14 +42,13 @@
         </div>
 
         <form action="/series/<?= $serie->uuid ?>/infos" method="GET">
-            <select name="temporadas" id="temporadas" class="btn btn-light py-1 px-5">
+            <select name="temp" id="temp" class="form-select border-none py-1 px-5 width-0" onchange="this.form.submit()">
                 <?php
                     if(count($temporadas) > 0){
                         foreach($temporadas as $temporada){
                 ?>
-                    <option value="<?= $temporada->numero ?>"  <?= $temporada->numero == $temp ? 'selected' : '' ?>>
-
-                            <button type="submit" class="btn p-0 m-0">Temporada <?= $temporada->numero ?></button>
+                    <option value="<?= $temporada->numero ?>" <?= $temporada->numero == $temp ? 'selected' : '' ?> >
+                        Temporada <?= $temporada->numero ?>
                     </option>
                 <?php
                         }
@@ -57,6 +56,37 @@
                 ?>
             </select>
         </form>
+    </div>
+
+    <div class="w-100 justify-content-center text-center eps-button">
+        <button type="button" class="btn btn-light px-5 py-2" data-toggle="modal" data-target="#temporada-<?= $temporada->uuid ?>">
+            <i class="bi-chevron-double-up"></i> Episódios
+        </button>
+
+        <div class="modal fade" id="temporada-<?= $temporada->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Temporada <?= $temporada->numero ?></h5>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+                    </div>
+
+                    <div class="row g-3 px-3 py-3">
+                        <a href="/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/<?= $temporada->uuid ?>" class="col-6 col-md-3">
+                            <div class="card">
+                                <div class="card-body py-3">
+                                    <p class="mt-3 text-muted"><i class="bi-card-heading"></i> Temporada <?= $temporada->numero ?></p>
+                                    <p class="mt-3 text-muted">
+                                        <i class="bi-circle-fill small <?= ($temporada->ativo == 1) ? 'text-success' : 'text-danger' ?>"></i>  
+                                        <?= ($temporada->ativo == 1) ? 'Ativo' : 'Inativo' ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
