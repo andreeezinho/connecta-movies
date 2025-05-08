@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../layout/top.php';
+    require_once __DIR__ . '/../../layout/top.php';
 ?>
 
     <div class="container pb-5">
@@ -13,16 +13,16 @@
 
                     <li class="breadcrumb-item">
                         <i class="lh-1"></i>
-                        <a href="/dashboard/series" class="text-decoration-none text-muted">Séries</a>
+                        <a href="/dashboard/series" class="text-decoration-none text-muted"><?= $serie->nome ?></a>
                     </li>
 
-                    <li class="breadcrumb-item">Cadastro</li>
+                    <li class="breadcrumb-item">Editar</li>
                 </ol>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <form action="/dashboard/series/cadastro" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
+            <form action="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
@@ -38,7 +38,7 @@
                         include_once('form.php');
                     ?>
                     <div class="form-group text-center">
-                        <a href="/dashboard/series" class="btn btn-secondary mx-1">Cancelar</a>
+                        <a href="/dashboard/series/<?= $serie->uuid ?>/temporadas" class="btn btn-secondary mx-1">Cancelar</a>
                         <button type="submit" class="btn btn-primary mx-1">Confirmar</button>
                     </div>
                 </div>
@@ -47,5 +47,5 @@
     </div>
 
 <?php
-    require_once __DIR__ . '/../layout/bottom.php';
+    require_once __DIR__ . '/../../layout/bottom.php';
 ?>

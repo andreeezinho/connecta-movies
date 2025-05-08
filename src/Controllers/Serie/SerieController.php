@@ -56,7 +56,7 @@ class SerieController extends Controller {
             ]);
         }
 
-        return $this->router->redirect('dashboard/series');
+        return $this->router->redirect('dashboard/series/'.$create->uuid.'/temporadas');
     }
 
     public function edit(Request $request, $uuid){

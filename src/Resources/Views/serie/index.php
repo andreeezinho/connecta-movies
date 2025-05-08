@@ -94,7 +94,7 @@
                             <div class="modal-footer justify-content-center">
                                 <div class="">
                                         <a href="/dashboard/series/<?= $serie->uuid ?>/editar" class="btn btn-primary"><i class="bi-pencil-fill"></i></a>
-                                        <a href="/dashboard/series/<?= $serie->uuid ?>" class="btn btn-dark"><i class="bi-eye-fill"></i></a>
+                                        <a href="/dashboard/series/<?= $serie->uuid ?>/temporadas" class="btn btn-secondary mx-2"><i class="bi-camera-reels-fill"></i> + </a>
                                         <button data-toggle="modal" data-target="#serie-delete-<?= $serie->uuid ?>" class="btn btn-danger"><i class="bi-trash-fill"></i></button>
 
                                         <div class="modal fade" id="serie-delete-<?= $serie->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -8,7 +8,7 @@ interface ITemporada {
 
     public function create(array $data, int $series_id);
 
-    public function update(array $data, int $id);
+    public function update(array $data, int $series_id, int $id);
 
     public function delete(int $id);
 
