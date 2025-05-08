@@ -49,7 +49,7 @@
 
     <div class="col-12 col-md-12 form-group my-2">
         <label for="nome">Nome do filme</label>
-        <input type="text" name="nome" id="nome" class="form-control py-2" placeholder="Insira seu nome" value="<?= $filme->nome ?? '' ?>">
+        <input type="text" name="nome" id="nome" class="form-control py-2" placeholder="Insira o nome" value="<?= $filme->nome ?? '' ?>">
     </div>
 
     <div class="col-12 col-md-12 form-group my-2">

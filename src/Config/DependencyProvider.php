@@ -12,6 +12,10 @@ use App\Interfaces\Filme\IFilme;
 use App\Repositories\Filme\FilmeRepository;
 use App\Interfaces\Lista\ILista;
 use App\Repositories\Lista\ListaRepository;
+use App\Interfaces\Serie\ISerie;
+use App\Repositories\Serie\SerieRepository;
+use App\Interfaces\Temporada\ITemporada;
+use App\Repositories\Temporada\TemporadaRepository;
 
 class DependencyProvider {
 
@@ -52,6 +56,19 @@ class DependencyProvider {
                 ILista::class,
                 new ListaRepository()
             );
+
+        $this->container
+            ->set(
+                ISerie::class,
+                new SerieRepository()
+            );
+
+        $this->container
+            ->set(
+                ITemporada::class,
+                new TemporadaRepository()
+            );
+
 
     }
 

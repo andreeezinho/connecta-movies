@@ -54,12 +54,12 @@
     </div>
     <div class="row mt-3 g-3 pb-4 border rounded bg-light">
         <?php
-            if(count($filmes) > 0){
-                foreach($filmes as $filme){
+            if(count($series) > 0){
+                foreach($series as $serie){
         ?>
             <div class="col-6 col-md-4 col-lg-2">
-                <a href="/filmes/<?= $filme->filme_uuid ?>/infos" class="border-0">
-                    <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $filme->nome ?>">
+                <a href="/series/<?= $serie->filme_uuid ?>/infos" class="border-0">
+                    <img src="/public/img/conteudos/capas/series/<?= $serie->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $serie->nome ?>">
                 </a>
             </div>
         <?php
