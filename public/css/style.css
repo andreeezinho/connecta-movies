@@ -127,7 +127,9 @@
 .banner-carousel{
     min-height: 80vh;
     max-height: 80vh;
-    filter: brightness(0.50) opacity(0.80);
+    object-fit: cover;
+    object-position: 50% 0;
+    filter: brightness(0.30) opacity(1.0);
 }
 
 @media(min-width: 721px){

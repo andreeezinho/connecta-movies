@@ -9,7 +9,7 @@
                 foreach($random_filmes as $index => $filme){
             ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>" data-bs-interval="5000">
-                    <img src="/public/img/conteudos/banners/filmes/<?= $filme->banner ?>" class="d-block w-100" alt="Banner" class="banner-carousel">
+                    <img src="/public/img/conteudos/banners/filmes/<?= $filme->banner ?>" class="d-block w-100 banner-carousel" alt="Banner">
                     <div class="carousel-caption d-none d-md-block text-start pb-5">
                         <h1><?= $filme->nome ?></h1>
                         <div class="mt-3 pb-5">
