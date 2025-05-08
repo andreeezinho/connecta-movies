@@ -32,7 +32,7 @@ class ListaRepository implements ILista {
         $sql = "SELECT l.*,
             f.uuid as filme_uuid, f.nome, f.imagem, f.ativo
             FROM " . self::TABLE . " l
-            JOIN filmes f
+            JOIN {$params['tipo']} f
                 ON id_conteudo = f.id
             WHERE
                 usuarios_id = :usuarios_id

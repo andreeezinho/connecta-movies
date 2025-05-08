@@ -13,18 +13,18 @@
             </ul>
 
             <ul class="navbar-nav d-flex">
-                <li class="nav-item d-none d-md-block">
+                <li class="nav-item">
                     <a href="/filmes/all" class="nav-link">Filmes</a>
                 </li>
 
-                <li class="nav-item d-none d-md-block">
-                    <a href="#" class="nav-link">Séries</a>
+                <li class="nav-item">
+                    <a href="/series" class="nav-link">Séries</a>
                 </li>
 
                 <?php
                     if(isset($_SESSION['user'])){
                 ?>
-                    <li class="nav-item d-none d-md-block">
+                    <li class="nav-item">
                         <a href="/dashboard" class="nav-link">Dashboard</a>
                     </li>
 
@@ -59,7 +59,7 @@
                 <?php
                     }else{
                 ?>
-                    <li class="nav-item d-none d-md-block ms-0 ms-md-4">
+                    <li class="nav-item ms-0 ms-md-4">
                         <a href="/login" class="btn btn-light">Login</a>
                     </li>
                 <?php

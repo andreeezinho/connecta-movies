@@ -10,8 +10,10 @@
     <title><?= SITE_NAME ?></title>
 </head>
 <body class="bg-dark">
-    <video controls class="movie">
-         <source src="/public/conteudos/filmes/<?= $filme->path ?>" type="video/webm" />
+    <video controls nodownload class="movie">
+         <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+         <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/webm' />
+         <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/ogg' />
      </video>
 
      <a href="/filmes/<?= $filme->uuid ?>/infos" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
