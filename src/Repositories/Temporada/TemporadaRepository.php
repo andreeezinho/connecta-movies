@@ -27,6 +27,11 @@ class TemporadaRepository implements ITemporada {
     
         $conditions = [];
         $bindings = [];
+        
+        if(isset($params['temp']) && $params['temp'] != ""){
+            $conditions[] = "numero = :temp";
+            $bindings[':temp'] = $params['temp'];
+        }
 
         if(isset($params['numero']) && $params['numero'] != ""){
             $conditions[] = "numero = :numero";
@@ -47,7 +52,7 @@ class TemporadaRepository implements ITemporada {
             $sql .= " WHERE " . implode(" AND ", $conditions);
         }
 
-        $sql .= " ORDER BY created_at DESC";
+        $sql .= " ORDER BY numero ASC";
 
         $stmt = $this->conn->prepare($sql);
 

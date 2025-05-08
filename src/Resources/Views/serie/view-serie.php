@@ -41,7 +41,22 @@
             <button type="submit" class="btn text-light p-1 me-3 movie-actions"><i class="bi-heart-fill"></i> <p class="p-0 m-0">Avaliar</p></button>
         </div>
 
-        <a href="/series/<?= $serie->uuid ?>/assistir" class="btn btn-light py-1 px-5"><i class="bi-play-fill"></i> Assita agora</a>
+        <form action="/series/<?= $serie->uuid ?>/infos" method="GET">
+            <select name="temporadas" id="temporadas" class="btn btn-light py-1 px-5">
+                <?php
+                    if(count($temporadas) > 0){
+                        foreach($temporadas as $temporada){
+                ?>
+                    <option value="<?= $temporada->numero ?>"  <?= $temporada->numero == $temp ? 'selected' : '' ?>>
+
+                            <button type="submit" class="btn p-0 m-0">Temporada <?= $temporada->numero ?></button>
+                    </option>
+                <?php
+                        }
+                    }
+                ?>
+            </select>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

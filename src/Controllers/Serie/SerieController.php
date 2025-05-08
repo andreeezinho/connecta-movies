@@ -9,17 +9,21 @@ use App\Repositories\Serie\SerieRepository;
 use App\Interfaces\Serie\ISerie;
 use App\Repositories\Lista\ListaRepository;
 use App\Interfaces\Lista\ILista;
+use App\Repositories\Temporada\TemporadaRepository;
+use App\Interfaces\Temporada\ITemporada;
 
 class SerieController extends Controller {
 
     protected $serieRepository;
     protected $listaRepository;
+    protected $temporadaRepository;
     protected $auth;
 
-    public function __construct(ISerie $serieRepository, ListaRepository $listaRepository, Auth $auth){
+    public function __construct(ISerie $serieRepository, ListaRepository $listaRepository, ITemporada $temporadaRepository, Auth $auth){
         parent::__construct();
         $this->serieRepository = $serieRepository;
         $this->listaRepository = $listaRepository;
+        $this->temporadaRepository = $temporadaRepository;
         $this->auth = $auth;
     }
 
@@ -189,11 +193,19 @@ class SerieController extends Controller {
             return $this->router->redirect('404');
         }
 
+        $params = $request->getQueryParams();
+
+        $params = array_merge($params, ['ativo' => 1]);
+
         $serieInList = $this->listaRepository->findByUserAndContentId($user->id, $serie->id, 'series');
-        
-        return $this->router->view('serie/view-movie', [
+
+        $allActiveSeasons = $this->temporadaRepository->all($params);
+
+        return $this->router->view('serie/view-serie', [
             'serie' => $serie,
-            'serieInList' => $serieInList
+            'serieInList' => $serieInList,
+            'temporadas' => $allActiveSeasons,
+            'temp' => $params['temp'] ?? 1
         ]);
     }
 
