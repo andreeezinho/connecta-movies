@@ -16,6 +16,8 @@ use App\Interfaces\Serie\ISerie;
 use App\Repositories\Serie\SerieRepository;
 use App\Interfaces\Temporada\ITemporada;
 use App\Repositories\Temporada\TemporadaRepository;
+use App\Interfaces\Episodio\IEpisodio;
+use App\Repositories\Episodio\EpisodioRepository;
 
 class DependencyProvider {
 
@@ -67,6 +69,12 @@ class DependencyProvider {
             ->set(
                 ITemporada::class,
                 new TemporadaRepository()
+            );
+
+        $this->container
+            ->set(
+                IEpisodio::class,
+                new EpisodioRepository()
             );
 
 

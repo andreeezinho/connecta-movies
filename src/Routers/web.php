@@ -15,6 +15,7 @@ use App\Controllers\Filme\FilmeController;
 use App\Controllers\Lista\ListaController;
 use App\Controllers\Serie\SerieController;
 use App\Controllers\Temporada\TemporadaController;
+use App\Controllers\Episodio\EpisodioController;
 
 
 $router = new Router();
@@ -35,6 +36,7 @@ $filmeController = $container->get(FilmeController::class);
 $listaController = $container->get(ListaController::class);
 $serieController = $container->get(SerieController::class);
 $temporadaController = $container->get(TemporadaController::class);
+$episodioController = $container->get(EpisodioController::class);
 
 //rotas
 
@@ -121,5 +123,12 @@ $router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/edi
 $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/editar", [$temporadaController, 'update'], $auth);
 $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/deletar", [$temporadaController, 'destroy'], $auth);
 
+//episodios
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios", [$episodioController, 'index'], $auth);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/cadastro", [$episodioController, 'create'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/cadastro", [$episodioController, 'store'], $auth);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'edit'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'update'], $auth);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/deletar", [$episodioController, 'destroy'], $auth);
 
 return $router;
