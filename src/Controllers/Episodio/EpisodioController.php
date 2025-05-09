@@ -177,7 +177,6 @@ class EpisodioController extends Controller {
             return $this->router->redirect('404');
         }
 
-
         $episodio = $this->episodioRepository->findByUuid($episodio_uuid);
 
         if(!$episodio){
@@ -191,6 +190,25 @@ class EpisodioController extends Controller {
         }
 
         return $this->router->redirect('dashboard/series/'.$serie->uuid.'/temporadas/'.$temporada->uuid.'/episodios');
+    }
+
+    public function viewEpisode(Request $request, $serie_uuid, $episodio_uuid){
+        $serie = $this->serieRepository->findByUuid($serie_uuid);
+
+        if(!$serie){
+            return $this->router->redirect('404');
+        }
+
+        $episodio = $this->episodioRepository->findByUuid($episodio_uuid);
+
+        if(!$episodio){
+            return $this->router->redirect('404');
+        }
+
+        return $this->router->view('serie/temporada/episodio/episode', [
+            'serie' => $serie,
+            'episodio' => $episodio
+        ]);
     }
 
 }

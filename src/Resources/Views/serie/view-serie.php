@@ -59,26 +59,38 @@
     </div>
 
     <div class="w-100 justify-content-center text-center eps-button">
-        <button type="button" class="btn btn-light px-5 py-2" data-toggle="modal" data-target="#temporada-<?= $temporada->uuid ?>">
+        <button type="button" class="btn btn-light px-5 py-2" data-toggle="modal" data-target="#serie-<?= $serie->uuid ?>">
             <i class="bi-chevron-double-up"></i> Episódios
         </button>
 
-        <div class="modal fade" id="temporada-<?= $temporada->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="serie-<?= $serie->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content pb-3">
                     <div class="modal-header d-flex">
                         <h5 class="modal-title col-12 text-start" id="exampleModalLongTitle">
-                            Temporada <?= $temporada->numero ?> 
+                            Temporada <?= $season->numero ?? null ?> 
                             <button type="button" class="btn btn-light float-end" data-dismiss="modal">X</button>
                         </h5>   
                     </div>
 
-                    <a href="/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/<?= $temporada->uuid ?>" class="col-12 py-3 py-2 border-bottom d-flex text-decoration-none text-dark eps-hover">
-                        <div class="col-12 text-start px-5">
-                            Episódios 1
-                            <i class="bi-chevron-down float-end"></i>
-                        </div>
-                    </a>
+                    <?php
+                        if(count($episodios) > 0){
+                            foreach($episodios as $episodio){
+                    ?>
+                        <a href="/series/<?= $serie->uuid ?>/<?= $episodio->uuid ?>" class="col-12 py-3 py-2 border-bottom d-flex text-decoration-none text-dark eps-hover">
+                            <div class="col-12 text-start px-5">
+                                Episódio <?= $episodio->numero ?>
+                                <i class="bi-chevron-down float-end"></i>
+                            </div>
+                        </a>
+                    <?php
+                            }
+                        }else{
+                    ?>
+                        <p class="text-muted">Não há episódios...</p>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

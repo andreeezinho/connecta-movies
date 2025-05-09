@@ -130,5 +130,7 @@ $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/ep
 $router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'edit'], $auth);
 $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'update'], $auth);
 $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/deletar", [$episodioController, 'destroy'], $auth);
+$router->create("GET", "/series/{uuid}/{uuid_episodio}", [$episodioController, 'viewEpisode'], $auth);
+
 
 return $router;
