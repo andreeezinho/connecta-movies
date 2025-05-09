@@ -161,7 +161,7 @@ class EpisodioController extends Controller {
             ]);
         }
 
-        return $this->router->redirect('dashboard/series/'.$serie->uuid.'/temporadas/'.$temporada->uuid.'/episodios');
+        return $this->router->redirect('dashboard/series/'.$serie->uuid.'/temporadas'.'/'.$temporada->uuid.'/episodios');
     }
 
     public function destroy(Request $request, $serie_uuid, $temporada_uuid, $episodio_uuid){

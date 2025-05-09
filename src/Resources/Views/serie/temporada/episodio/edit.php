@@ -32,7 +32,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <form action="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
+            <form action="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/episodios/<?= $episodio->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
