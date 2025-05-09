@@ -133,12 +133,18 @@
 }
 
 .width-0{
+    min-width: min-content;
     max-width: min-content;
 }
 
 .eps-button{
     position: absolute;
     bottom: 0;
+}
+
+.eps-hover:hover{
+    transition: all 0.2s ease-in;
+    background-color: #acacac;
 }
 
 @media(min-width: 721px){
