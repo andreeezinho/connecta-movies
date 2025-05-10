@@ -56,7 +56,7 @@ class SerieRepository implements ISerie {
             WHERE
                 ativo = :ativo
             ORDER BY RAND()
-            LIMIT 10";
+            LIMIT 12";
 
         $stmt = $this->conn->prepare($sql);
 
