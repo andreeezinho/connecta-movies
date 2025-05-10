@@ -2,6 +2,7 @@
 
 use App\Config\Router;
 use App\Config\Auth;
+use App\Config\Admin;
 use App\Config\Container;
 use App\Config\DependencyProvider;
 use App\Controllers\User\UserController;
@@ -15,10 +16,12 @@ use App\Controllers\Filme\FilmeController;
 use App\Controllers\Lista\ListaController;
 use App\Controllers\Serie\SerieController;
 use App\Controllers\Temporada\TemporadaController;
+use App\Controllers\Episodio\EpisodioController;
 
 
 $router = new Router();
 $auth = new Auth();
+$admin = new Admin();
 $container = new Container();
 $dependencyProvider = new DependencyProvider($container);
 $dependencyProvider->register();
@@ -35,6 +38,7 @@ $filmeController = $container->get(FilmeController::class);
 $listaController = $container->get(ListaController::class);
 $serieController = $container->get(SerieController::class);
 $temporadaController = $container->get(TemporadaController::class);
+$episodioController = $container->get(EpisodioController::class);
 
 //rotas
 
@@ -50,7 +54,7 @@ $router->create("POST", "/login", [$userController, 'auth'], null);
 $router->create("GET", "/logout", [$userController, 'logout'], $auth);
 
 //dashboard
-$router->create("GET", "/dashboard", [$dashboardController, 'index'], $auth);
+$router->create("GET", "/dashboard", [$dashboardController, 'index'], $auth, $admin);
 
 //usuarios
 $router->create("GET", "/usuarios", [$userController, 'index'], $auth);
@@ -81,15 +85,15 @@ $router->create("POST", "/perfil/senha", [$userPerfilController, 'updateSenha'],
 $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $auth);
 
 //filmes
-$router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
-$router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
-$router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
-$router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
-$router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
-$router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
-$router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
-$router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
-$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], null);
+$router->create("GET", "/dashboard/filmes", [$filmeController, 'index'], $auth, $admin);
+$router->create("GET", "/dashboard/filmes/cadastro", [$filmeController, 'create'], $auth, $admin);
+$router->create("POST", "/dashboard/filmes/cadastro", [$filmeController, 'store'], $auth, $admin);
+$router->create("GET", "/dashboard/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth, $admin);
+$router->create("POST", "/dashboard/filmes/{uuid}/editar", [$filmeController, 'update'], $auth, $admin);
+$router->create("GET", "/dashboard/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth, $admin);
+$router->create("POST", "/dashboard/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth, $admin);
+$router->create("POST", "/dashboard/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth, $admin);
+$router->create("GET", "/filmes", [$filmeController, 'allActiveMovies'], null);
 $router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
 $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
 
@@ -102,24 +106,33 @@ $router->create("POST", "/series/{uuid}/desfavoritar", [$listaController, 'remov
 
 
 //series
-$router->create("GET", "/dashboard/series", [$serieController, 'index'], $auth);
-$router->create("GET", "/dashboard/series/cadastro", [$serieController, 'create'], $auth);
-$router->create("POST", "/dashboard/series/cadastro", [$serieController, 'store'], $auth);
-$router->create("GET", "/dashboard/series/{uuid}/editar", [$serieController, 'edit'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/editar", [$serieController, 'update'], $auth);
-$router->create("GET", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'editImages'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'updateImages'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/deletar", [$serieController, 'destroy'], $auth);
+$router->create("GET", "/dashboard/series", [$serieController, 'index'], $auth, $admin);
+$router->create("GET", "/dashboard/series/cadastro", [$serieController, 'create'], $auth, $admin);
+$router->create("POST", "/dashboard/series/cadastro", [$serieController, 'store'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/editar", [$serieController, 'edit'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/editar", [$serieController, 'update'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'editImages'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/editar/imagens", [$serieController, 'updateImages'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/deletar", [$serieController, 'destroy'], $auth, $admin);
 $router->create("GET", "/series", [$serieController, 'allActiveSeries'], null);
 $router->create("GET", "/series/{uuid}/infos", [$serieController, 'viewInfosSerie'], $auth);
 
 //temporada
-$router->create("GET", "/dashboard/series/{uuid}/temporadas", [$temporadaController, 'index'], $auth);
-$router->create("GET", "/dashboard/series/{uuid}/temporadas/cadastro", [$temporadaController, 'create'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/temporadas/cadastro", [$temporadaController, 'store'], $auth);
-$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/editar", [$temporadaController, 'edit'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/editar", [$temporadaController, 'update'], $auth);
-$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/deletar", [$temporadaController, 'destroy'], $auth);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas", [$temporadaController, 'index'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/cadastro", [$temporadaController, 'create'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/cadastro", [$temporadaController, 'store'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/editar", [$temporadaController, 'edit'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/editar", [$temporadaController, 'update'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/deletar", [$temporadaController, 'destroy'], $auth, $admin);
+
+//episodios
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios", [$episodioController, 'index'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/cadastro", [$episodioController, 'create'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/cadastro", [$episodioController, 'store'], $auth, $admin);
+$router->create("GET", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'edit'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/editar", [$episodioController, 'update'], $auth, $admin);
+$router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/deletar", [$episodioController, 'destroy'], $auth, $admin);
+$router->create("GET", "/series/{uuid}/{uuid_episodio}", [$episodioController, 'viewEpisode'], $auth);
 
 
 return $router;

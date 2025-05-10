@@ -15,7 +15,7 @@
     <div class="row mt-3 g-3">
         <h3>Dashboard</h3>
 
-        <div class="col-6 col-md-4 col-lg-3">
+        <div class="col-6 col-md-4">
             <a href='/usuarios' class="card bg-primary text-light text-decoration-none">
                 <div class="card-body py-3">
                     <div class='d-flex'>
@@ -29,7 +29,7 @@
                     <?php
                         }else{
                     ?>
-                        <p class="my-2">Ainda não há usuarios</p>
+                        <h3 class="my-2">0</h3>
                     <?php
                         }
                     ?>
@@ -37,21 +37,21 @@
             </a>
         </div>
 
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href='#' class="card bg-primary text-light text-decoration-none">
+        <div class="col-6 col-md-4">
+            <a href='/dashboard/filmes' class="card bg-primary text-light text-decoration-none">
                 <div class="card-body py-3">
                     <div class='d-flex'>
-                        <h3><i class="bi-people-fill"></i></h3>
-                        <p class="my-auto ms-2">Clientes</p>
+                        <h3><i class="bi-camera-reels-fill"></i></h3>
+                        <p class="my-auto ms-2">Filmes</p>
                     </div>
                     <?php
-                        if(isset($clientes) && count($clientes) > 0){
+                        if(isset($filmes) && count($filmes) > 0){
                     ?>
-                        <h3 class="my-2"><?= count($clientes) ?> </h3>
+                        <h3 class="my-2"><?= count($filmes) ?> </h3>
                     <?php
                         }else{
                     ?>
-                        <p class="my-2">Ainda não há clientes</p>
+                        <h3 class="my-2">0</h3>
                     <?php
                         }
                     ?>
@@ -59,65 +59,21 @@
             </a>
         </div>
 
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href='#' class="card bg-success text-light text-decoration-none">
+        <div class="col-6 col-md-4">
+            <a href='/dashboard/series' class="card bg-primary text-light text-decoration-none">
                 <div class="card-body py-3">
                     <div class='d-flex'>
-                        <h3><i class="bi-box-seam-fill"></i></h3>
-                        <p class="my-auto ms-2">Produtos</p>
+                        <h3><i class="bi-card-list"></i></h3>
+                        <p class="my-auto ms-2">Séries</p>
                     </div>
                     <?php
-                        if(isset($produtos) && count($produtos) > 0){
+                        if(isset($series)){
                     ?>
-                        <h3 class="my-2"><?= count($produtos) ?> </h3>
+                        <h3 class="my-2"><?= count($series) ?> </h3>
                     <?php
                         }else{
                     ?>
-                        <p class="my-2">Ainda não há produtos</p>
-                    <?php
-                        }
-                    ?>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href='#' class="card bg-success text-light text-decoration-none">
-                <div class="card-body py-3">
-                    <div class='d-flex'>
-                        <h3><i class="bi-handbag-fill"></i></h3>
-                        <p class="my-auto ms-2">Vendas</p>
-                    </div>
-                    <?php
-                        if(isset($vendas) && count($vendas) > 0){
-                    ?>
-                        <h3 class="my-2"><?= count($vendas) ?> </h3>
-                    <?php
-                        }else{
-                    ?>
-                        <p class="my-2">Ainda não há vendas</p>
-                    <?php
-                        }
-                    ?>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href='#' class="card bg-warning text-light text-decoration-none">
-                <div class="card-body py-3">
-                    <div class='d-flex'>
-                        <h3><i class="bi-tools"></i></h3>
-                        <p class="my-auto ms-2">Serviços</p>
-                    </div>
-                    <?php
-                        if(isset($servicos) && count($servicos) > 0){
-                    ?>
-                        <h3 class="my-2"><?= count($servicos) ?> </h3>
-                    <?php
-                        }else{
-                    ?>
-                        <p class="my-2">Ainda não há serviços</p>
+                        <h3 class="my-2">0</h3>
                     <?php
                         }
                     ?>

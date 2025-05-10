@@ -11,19 +11,23 @@ use App\Repositories\Lista\ListaRepository;
 use App\Interfaces\Lista\ILista;
 use App\Repositories\Temporada\TemporadaRepository;
 use App\Interfaces\Temporada\ITemporada;
+use App\Repositories\Episodio\EpisodioRepository;
+use App\Interfaces\Episodio\IEpisodio;
 
 class SerieController extends Controller {
 
     protected $serieRepository;
     protected $listaRepository;
     protected $temporadaRepository;
+    protected $episodioRepository;
     protected $auth;
 
-    public function __construct(ISerie $serieRepository, ListaRepository $listaRepository, ITemporada $temporadaRepository, Auth $auth){
+    public function __construct(ISerie $serieRepository, ListaRepository $listaRepository, ITemporada $temporadaRepository, IEpisodio $episodioRepository, Auth $auth){
         parent::__construct();
         $this->serieRepository = $serieRepository;
         $this->listaRepository = $listaRepository;
         $this->temporadaRepository = $temporadaRepository;
+        $this->episodioRepository = $episodioRepository;
         $this->auth = $auth;
     }
 
@@ -199,13 +203,19 @@ class SerieController extends Controller {
 
         $serieInList = $this->listaRepository->findByUserAndContentId($user->id, $serie->id, 'series');
 
-        $allActiveSeasons = $this->temporadaRepository->all(['ativo' => 1]);
+        $allActiveSeasons = $this->temporadaRepository->all(['series_id' => $serie->id ,'ativo' => 1]);
 
+        $temporada = $this->temporadaRepository->findByNumberAndSerieId($params['temp'] ?? 1, $serie->id);
+
+        $allEpisodesInSeason = $this->episodioRepository->all(['temporadas_id' => $temporada->id ?? 1, 'ativo' => 1]);
+        
         return $this->router->view('serie/view-serie', [
             'serie' => $serie,
             'serieInList' => $serieInList,
             'temporadas' => $allActiveSeasons,
-            'temp' => $params['temp'] ?? 1
+            'season' => $temporada,
+            'temp' => $params['temp'] ?? 1,
+            'episodios' => $allEpisodesInSeason
         ]);
     }
 

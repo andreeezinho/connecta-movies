@@ -61,6 +61,34 @@ class TemporadaRepository implements ITemporada {
         return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
     }
 
+    public function findByNumberAndSerieId(int $number, int $series_id){
+        $sql = "SELECT * FROM " . self::TABLE . " 
+            WHERE
+                numero = :numero 
+            AND
+                series_id = :series_id
+            AND 
+                ativo = :ativo
+        ";
+        
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([
+            ':numero' => $number,
+            ':series_id' => $series_id,
+            ':ativo' => 1
+        ]);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::CLASS_NAME);
+        $result = $stmt->fetch();
+
+        if(is_null($result)){
+            return null;
+        }
+
+        return $result;
+    }
+
     public function create(array $data, int $series_id){
         $temporada = $this->model->create($data, $series_id);
 

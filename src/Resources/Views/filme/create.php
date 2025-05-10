@@ -13,7 +13,7 @@
 
                     <li class="breadcrumb-item">
                         <i class="lh-1"></i>
-                        <a href="/filmes" class="text-decoration-none text-muted">Filmes</a>
+                        <a href="/dashboard/filmes" class="text-decoration-none text-muted">Filmes</a>
                     </li>
 
                     <li class="breadcrumb-item">Cadastro</li>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <form action="/filmes/cadastro" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
+            <form action="/dashboard/filmes/cadastro" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
