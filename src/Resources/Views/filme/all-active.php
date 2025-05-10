@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="row mt-3 g-3 pb-4 border rounded bg-light">
+    <div class="row mt-3 g-3 pb-4 border rounded bg-light pb-5">
         <?php
             if(count($filmes) > 0){
                 foreach($filmes as $filme){
