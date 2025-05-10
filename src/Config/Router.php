@@ -4,18 +4,21 @@ namespace App\Config;
 
 use App\Request\Request;
 use App\Config\Auth;
+use App\Config\Admin;
 
 class Router {
 
     protected $routers = [];
     protected $auth = null;
+    protected $admin = null;
 
-    public function create(string $method, string $path, callable $callback, Auth $auth = null){
+    public function create(string $method, string $path, callable $callback, Auth $auth = null, Admin $admin = null){
         $normalizedPath = $this->normalizePath($path);
 
         $this->routers[$method][$normalizedPath] = [
             'callback' => $callback,
-            'auth' => $auth
+            'auth' => $auth,
+            'admin' => $admin
         ];
     }
 
@@ -37,6 +40,10 @@ class Router {
                         return $this->view('login/login', [
                             'erro' => 'Faça login para continuar'
                         ]);
+                    }
+
+                    if(!is_null($route['admin']) && !$route['admin']->check()){
+                        return $this->redirect('404');
                     }
 
                     array_shift($matches);

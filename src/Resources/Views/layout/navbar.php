@@ -36,7 +36,6 @@
                     </li>
 
                     <?php
-                    $_SESSION['user']->is_admin = 1;
                         if($_SESSION['user']->is_admin == 1){
                     ?>
                         <li class="nav-item dropdown">
