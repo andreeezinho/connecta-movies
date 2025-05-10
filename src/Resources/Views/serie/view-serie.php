@@ -59,31 +59,38 @@
     </div>
 
     <div class="w-100 justify-content-center text-center eps-button">
-        <button type="button" class="btn btn-light px-5 py-2" data-toggle="modal" data-target="#temporada-<?= $temporada->uuid ?>">
+        <button type="button" class="btn btn-light px-5 py-2" data-toggle="modal" data-target="#serie-<?= $serie->uuid ?>">
             <i class="bi-chevron-double-up"></i> Episódios
         </button>
 
-        <div class="modal fade" id="temporada-<?= $temporada->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="serie-<?= $serie->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Temporada <?= $temporada->numero ?></h5>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+                <div class="modal-content pb-3">
+                    <div class="modal-header d-flex">
+                        <h5 class="modal-title col-12 text-start" id="exampleModalLongTitle">
+                            Temporada <?= $season->numero ?? null ?> 
+                            <button type="button" class="btn btn-light float-end" data-dismiss="modal">X</button>
+                        </h5>   
                     </div>
 
-                    <div class="row g-3 px-3 py-3">
-                        <a href="/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/<?= $temporada->uuid ?>" class="col-6 col-md-3">
-                            <div class="card">
-                                <div class="card-body py-3">
-                                    <p class="mt-3 text-muted"><i class="bi-card-heading"></i> Temporada <?= $temporada->numero ?></p>
-                                    <p class="mt-3 text-muted">
-                                        <i class="bi-circle-fill small <?= ($temporada->ativo == 1) ? 'text-success' : 'text-danger' ?>"></i>  
-                                        <?= ($temporada->ativo == 1) ? 'Ativo' : 'Inativo' ?>
-                                    </p>
-                                </div>
+                    <?php
+                        if(count($episodios) > 0){
+                            foreach($episodios as $episodio){
+                    ?>
+                        <a href="/series/<?= $serie->uuid ?>/<?= $episodio->uuid ?>" class="col-12 py-3 py-2 border-bottom d-flex text-decoration-none text-dark eps-hover">
+                            <div class="col-12 text-start px-5">
+                                Episódio <?= $episodio->numero ?>
+                                <i class="bi-chevron-down float-end"></i>
                             </div>
                         </a>
-                    </div>
+                    <?php
+                            }
+                        }else{
+                    ?>
+                        <p class="text-muted">Não há episódios...</p>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

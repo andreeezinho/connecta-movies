@@ -141,6 +141,11 @@
     bottom: 0;
 }
 
+.eps-hover:hover{
+    transition: all 0.2s ease-in;
+    background-color: #acacac;
+}
+
 @media(min-width: 721px){
     .capa-preview{
         position: absolute;

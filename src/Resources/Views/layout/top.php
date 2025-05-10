@@ -16,4 +16,4 @@
             ?>
         </header>
 
-        <section class="vertical-size pt-5">
+        <section class="vertical-size pt-5 pb-5">

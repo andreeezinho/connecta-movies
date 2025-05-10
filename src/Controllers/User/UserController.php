@@ -17,10 +17,6 @@ class UserController extends Controller {
     }
 
     public function index(Request $request){
-        if(!userPermission('visualizar usuarios')){
-            return $this->router->redirect('');
-        }
-
         $params = $request->getQueryParams();
 
         $usuarios = $this->userRepository->all($params);
@@ -31,10 +27,6 @@ class UserController extends Controller {
     }
 
     public function create(Request $request){
-        if(!userPermission('cadastrar usuarios')){
-            return $this->router->redirect('');
-        }
-
         return $this->router->view('user/create', [
             'perfil' => false
         ]);
@@ -63,10 +55,6 @@ class UserController extends Controller {
     }
 
     public function edit(Request $request, $uuid){
-        if(!userPermission('editar usuarios')){
-            return $this->router->redirect('');
-        }
-        
         $usuario = $this->userRepository->findByUuid($uuid);
 
         if(!$usuario){
@@ -107,12 +95,6 @@ class UserController extends Controller {
     }
 
     public function destroy(Request $request, $uuid){
-        if(!userPermission('deletar usuarios')){
-            return $this->router->view('user/index', [
-                'erro' => 'Você não tem as permissões necessárias'
-            ]);
-        }
-
         $usuario = $this->userRepository->findByUuid($uuid);
 
         if(!$usuario){

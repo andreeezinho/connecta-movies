@@ -13,7 +13,7 @@
 
                     <li class="breadcrumb-item">
                         <i class="lh-1"></i>
-                        <a href="/filmes" class="text-decoration-none text-muted">Filmes</a>
+                        <a href="/dashboard/filmes" class="text-decoration-none text-muted">Filmes</a>
                     </li>
 
                     <li class="breadcrumb-item">Editar</li>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <form action="/filmes/<?= $filme->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1">
+            <form action="/dashboard/filmes/<?= $filme->uuid ?>/editar" method="POST" class="card col-12 py-2 mt-1">
                 <?php
                     if(isset($erro)){
                 ?>
@@ -38,7 +38,7 @@
                         include_once('form.php');
                     ?>
                     <div class="form-group text-center">
-                        <a href="/filmes" class="btn btn-secondary mx-1">Cancelar</a>
+                        <a href="/dashboard/filmes" class="btn btn-secondary mx-1">Cancelar</a>
                         <button type="submit" class="btn btn-primary mx-1">Confirmar</button>
                     </div>
                 </div>

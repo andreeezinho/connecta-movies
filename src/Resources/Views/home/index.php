@@ -14,7 +14,7 @@
                         <h1 class="d-none d-md-block"><?= $filme->nome ?></h1>
                         <h5 class="d-block d-md-none"><?= $filme->nome ?></h5>
                         <div class="mt-md-3 pb-md-5">
-                            <a href="/filmes/<?= $filme->uuid ?>/assistir" class="btn btn-light py-md-1 px-md-5"><i class="bi-play-fill"></i> Assita agora</a>
+                            <a href="/filmes/<?= $filme->uuid ?>/infos" class="btn btn-light py-md-1 px-md-5"><i class="bi-play-fill"></i> Assita agora</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <h1 class="d-none d-md-block"><?= $serie->nome ?></h1>
                         <h5 class="d-block d-md-none"><?= $serie->nome ?></h5>
                         <div class="mt-md-3 pb-md-5">
-                            <a href="/filmes/<?= $serie->uuid ?>/assistir" class="btn btn-light py-md-1 px-md-5"><i class="bi-play-fill"></i> Assita agora</a>
+                            <a href="/series/<?= $serie->uuid ?>/infos" class="btn btn-light py-md-1 px-md-5"><i class="bi-play-fill"></i> Assita agora</a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
             ?>
             
             <div class="justify-content-center text-center">
-                <a href="/filmes/all" class="btn btn-outline-primary py-2 px-4 rounded-pill">Veja mais <i class="bi-arrow-down"></i></a>
+                <a href="/filmes" class="btn btn-outline-primary py-2 px-4 rounded-pill">Veja mais <i class="bi-arrow-down"></i></a>
             </div>
         </div>
 

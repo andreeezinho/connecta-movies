@@ -60,7 +60,7 @@ class FilmeController extends Controller {
             ]);
         }
 
-        return $this->router->redirect('filmes');
+        return $this->router->redirect('dashboard/filmes');
     }
 
     public function edit(Request $request, $uuid){
@@ -94,7 +94,7 @@ class FilmeController extends Controller {
             ]);
         }
 
-        return $this->router->redirect('filmes/'.$filme->uuid.'/editar/imagens');
+        return $this->router->redirect('dashboard/filmes/'.$filme->uuid.'/editar/imagens');
     }
 
     public function editImages(Request $request, $uuid){
@@ -151,7 +151,7 @@ class FilmeController extends Controller {
             }
         }
 
-        return $this->router->redirect('filmes');
+        return $this->router->redirect('dashboard/filmes');
     }
 
     public function destroy(Request $request, $uuid){
@@ -170,7 +170,7 @@ class FilmeController extends Controller {
             ]);
         }
 
-        return $this->router->redirect('filmes');
+        return $this->router->redirect('dashboard/filmes');
     }
 
     public function allActiveMovies(Request $request){

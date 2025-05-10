@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../layout/top.php';
+    require_once __DIR__ . '/../../../layout/top.php';
 ?>
 
     <div class="container pb-5">
@@ -12,21 +12,27 @@
                     </li>
 
                     <li class="breadcrumb-item">
-                        <i class="lh-1"></i>
-                        <a href="/dashboard/filmes" class="text-decoration-none text-muted">Filmes</a>
+                        <i class="icon-house_siding lh-1"></i>
+                        <a href="/dashboard/series" class="text-decoration-none text-muted"><?= $serie->nome ?></a>
                     </li>
 
                     <li class="breadcrumb-item">
-                        <a href="/dashboard/filmes/<?= $filme->uuid ?>/editar" class="text-decoration-none text-muted">Editar</a>
+                        <i class="icon-house_siding lh-1"></i>
+                        <a href="/dashboard/series/<?= $serie->uuid ?>/temporadas" class="text-decoration-none text-muted">Temporadas</a>
                     </li>
 
-                    <li class="breadcrumb-item">Banner & Capa</li>
+                    <li class="breadcrumb-item">
+                        <i class="icon-house_siding lh-1"></i>
+                        <a href="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/episodios" class="text-decoration-none text-muted">Temporada <?= $temporada->numero ?></a>
+                    </li>
+
+                    <li class="breadcrumb-item">Cadastro</li>
                 </ol>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <form action="/dashboard/filmes/<?= $filme->uuid ?>/editar/imagens" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
+            <form action="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/episodios/cadastro" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
@@ -42,7 +48,7 @@
                         include_once('form.php');
                     ?>
                     <div class="form-group text-center">
-                        <a href="/dashboard/filmes" class="btn btn-secondary mx-1">Cancelar</a>
+                        <a href="/dashboard/series/<?= $serie->uuid ?>/temporadas/<?= $temporada->uuid ?>/episodios" class="btn btn-secondary mx-1">Cancelar</a>
                         <button type="submit" class="btn btn-primary mx-1">Confirmar</button>
                     </div>
                 </div>
@@ -51,5 +57,5 @@
     </div>
 
 <?php
-    require_once __DIR__ . '/../layout/bottom.php';
+    require_once __DIR__ . '/../../../layout/bottom.php';
 ?>
