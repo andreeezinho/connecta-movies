@@ -13,14 +13,14 @@
 
                 <li class="breadcrumb-item">
                     <i class="icon-house_siding lh-1"></i>
-                    <a href="/filmes" class="text-decoration-none text-muted">Filmes</a>
+                    <a href="/dashboard/filmes" class="text-decoration-none text-muted">Filmes</a>
                 </li>
             </ol>
         </div>
 
         <div class="col-4 col-xl-6">
             <div class="float-end">
-                <a href="/filmes/cadastro" class="btn btn-outline-dark"> + <i class="bi-camera-reels"></i></a>
+                <a href="/dashboard/filmes/cadastro" class="btn btn-outline-dark"> + <i class="bi-camera-reels"></i></a>
             </div>
         </div>
     </div>
@@ -32,12 +32,12 @@
             Filtrar filmes
         </button>
 
-        <a href="/filmes" class="btn btn-secondary">Limpar</a>
+        <a href="/dashboard/filmes" class="btn btn-secondary">Limpar</a>
     </div>
 
     <div class="modal fade" id="filtro-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="/filmes" method="GET" class="modal-content">
+            <form action="/dashboard/filmes" method="GET" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Filtrar filmes</h5>
                 </div>
@@ -93,8 +93,8 @@
                             </div>
                             <div class="modal-footer justify-content-center">
                                 <div class="">
-                                        <a href="/filmes/<?= $filme->uuid ?>/editar" class="btn btn-primary"><i class="bi-pencil-fill"></i></a>
-                                        <a href="/filmes/<?= $filme->uuid ?>" class="btn btn-dark"><i class="bi-eye-fill"></i></a>
+                                        <a href="/dashboard/filmes/<?= $filme->uuid ?>/editar" class="btn btn-primary"><i class="bi-pencil-fill"></i></a>
+                                        <a href="/filmes/<?= $filme->uuid ?>/infos" class="btn btn-dark"><i class="bi-eye-fill"></i></a>
                                         <button data-toggle="modal" data-target="#filme-delete-<?= $filme->uuid ?>" class="btn btn-danger"><i class="bi-trash-fill"></i></button>
 
                                         <div class="modal fade" id="filme-delete-<?= $filme->uuid ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -110,7 +110,7 @@
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                            <form action="/filmes/<?= $filme->uuid ?>/deletar" method="POST">
+                                                            <form action="/dashboard/filmes/<?= $filme->uuid ?>/deletar" method="POST">
                                                                 <button type="submit" class="btn btn-danger">Deletar</button>
                                                             </form>
                                                         </div>

@@ -14,19 +14,20 @@
 
             <ul class="navbar-nav d-flex">
                 <li class="nav-item">
-                    <a href="/filmes/all" class="nav-link">Filmes</a>
+                    <a href="/filmes" class="nav-link">Filmes</a>
                 </li>
 
                 <li class="nav-item">
                     <a href="/series" class="nav-link">Séries</a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="/minha-lista" class="nav-link">Minha-Lista</a>
+                </li>
+
                 <?php
                     if(isset($_SESSION['user'])){
                 ?>
-                    <li class="nav-item">
-                        <a href="/dashboard" class="nav-link">Dashboard</a>
-                    </li>
 
                     <li class="nav-item dropdown d-block d-md-none">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-usuario" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,14 +39,28 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuarios" data-bs-toggle="dropdown" aria-expanded="false">Site</span>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown-usuarios">
-                            <li><a class="dropdown-item" href="/usuarios">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="/permissoes">Permissões</a></li>
-                            <li><a class="dropdown-item" href="#">Clientes</a></li>
-                        </ul>
-                    </li>
+                    <?php
+                        if($_SESSION['user']->is_admin == 1){
+                    ?>
+                        <li class="nav-item dropdown">
+                            <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuarios" data-bs-toggle="dropdown" aria-expanded="false">Dashboard</span>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-usuarios">
+                                <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="/dashboard/filmes">Filmes</a></li>
+                                <li><a class="dropdown-item" href="/dashboard/series">Séries</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuarios" data-bs-toggle="dropdown" aria-expanded="false">Site</span>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-usuarios">
+                                <li><a class="dropdown-item" href="/usuarios">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="/permissoes">Permissões</a></li>
+                            </ul>
+                        </li>
+                    <?php
+                        }
+                    ?>
                     
                     <li class="nav-item dropdown d-none d-md-block me-5">
                         <span class="nav-link dropdown-toggle" href="#" id="dropdown-usuario" data-bs-toggle="dropdown" aria-expanded="false">

@@ -6,6 +6,8 @@ interface ITemporada {
 
     public function all(array $params = []);
 
+    public function findByNumberAndSerieId(int $number, int $series_id);
+
     public function create(array $data, int $series_id);
 
     public function update(array $data, int $series_id, int $id);
