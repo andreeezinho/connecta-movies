@@ -133,8 +133,7 @@
 }
 
 .width-0{
-    min-width: min-content;
-    max-width: min-content;
+    max-width: max-content;
 }
 
 .eps-button{

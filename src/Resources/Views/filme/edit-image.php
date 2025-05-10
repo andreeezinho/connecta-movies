@@ -13,11 +13,11 @@
 
                     <li class="breadcrumb-item">
                         <i class="lh-1"></i>
-                        <a href="/filmes" class="text-decoration-none text-muted">Filmes</a>
+                        <a href="/dashboard/filmes" class="text-decoration-none text-muted">Filmes</a>
                     </li>
 
                     <li class="breadcrumb-item">
-                        <a href="/filmes/<?= $filme->uuid ?>/editar" class="text-decoration-none text-muted">Editar</a>
+                        <a href="/dashboard/filmes/<?= $filme->uuid ?>/editar" class="text-decoration-none text-muted">Editar</a>
                     </li>
 
                     <li class="breadcrumb-item">Banner & Capa</li>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <form action="/filmes/<?= $filme->uuid ?>/editar/imagens" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
+            <form action="/dashboard/filmes/<?= $filme->uuid ?>/editar/imagens" method="POST" class="card col-12 py-2 mt-1" enctype="multipart/form-data">
                 <?php
                     if(isset($erro)){
                 ?>
@@ -42,7 +42,7 @@
                         include_once('form.php');
                     ?>
                     <div class="form-group text-center">
-                        <a href="/filmes" class="btn btn-secondary mx-1">Cancelar</a>
+                        <a href="/dashboard/filmes" class="btn btn-secondary mx-1">Cancelar</a>
                         <button type="submit" class="btn btn-primary mx-1">Confirmar</button>
                     </div>
                 </div>

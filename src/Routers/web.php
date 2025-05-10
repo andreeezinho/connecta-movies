@@ -83,15 +83,15 @@ $router->create("POST", "/perfil/senha", [$userPerfilController, 'updateSenha'],
 $router->create("POST", "/perfil/deletar", [$userPerfilController, 'destroy'], $auth);
 
 //filmes
-$router->create("GET", "/filmes", [$filmeController, 'index'], $auth);
-$router->create("GET", "/filmes/cadastro", [$filmeController, 'create'], $auth);
-$router->create("POST", "/filmes/cadastro", [$filmeController, 'store'], $auth);
-$router->create("GET", "/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
-$router->create("POST", "/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
-$router->create("GET", "/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
-$router->create("POST", "/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
-$router->create("POST", "/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
-$router->create("GET", "/filmes/all", [$filmeController, 'allActiveMovies'], null);
+$router->create("GET", "/dashboard/filmes", [$filmeController, 'index'], $auth);
+$router->create("GET", "/dashboard/filmes/cadastro", [$filmeController, 'create'], $auth);
+$router->create("POST", "/dashboard/filmes/cadastro", [$filmeController, 'store'], $auth);
+$router->create("GET", "/dashboard/filmes/{uuid}/editar", [$filmeController, 'edit'], $auth);
+$router->create("POST", "/dashboard/filmes/{uuid}/editar", [$filmeController, 'update'], $auth);
+$router->create("GET", "/dashboard/filmes/{uuid}/editar/imagens", [$filmeController, 'editImages'], $auth);
+$router->create("POST", "/dashboard/filmes/{uuid}/editar/imagens", [$filmeController, 'updateImages'], $auth);
+$router->create("POST", "/dashboard/filmes/{uuid}/deletar", [$filmeController, 'destroy'], $auth);
+$router->create("GET", "/filmes", [$filmeController, 'allActiveMovies'], null);
 $router->create("GET", "/filmes/{uuid}/infos", [$filmeController, 'viewInfosMovie'], $auth);
 $router->create("GET", "/filmes/{uuid}/assistir", [$filmeController, 'viewMovie'], $auth);
 

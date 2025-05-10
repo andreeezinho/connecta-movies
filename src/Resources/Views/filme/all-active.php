@@ -12,13 +12,13 @@
 
     <div class="row justify-content-center mb-5">
         <div class="col-12 col-md-6">
-            <form action="/filmes/all" method="GET" class="d-flex mx-auto">
+            <form action="/filmes" method="GET" class="d-flex mx-auto">
                 <input class="form-control me-2" type="text" name="nome" placeholder="Procure por um filme" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit"><i class="bi-search"></i></button>
                 <?php
                     if(isset($nome)){
                 ?>
-                    <a href="/filmes/all" class="btn btn-secondary ms-2"><i class="bi-backspace-fill"></i></a>
+                    <a href="/filmes" class="btn btn-secondary ms-2"><i class="bi-backspace-fill"></i></a>
                 <?php
                     }
                 ?>

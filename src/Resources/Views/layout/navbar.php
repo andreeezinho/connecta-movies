@@ -14,7 +14,7 @@
 
             <ul class="navbar-nav d-flex">
                 <li class="nav-item">
-                    <a href="/filmes/all" class="nav-link">Filmes</a>
+                    <a href="/filmes" class="nav-link">Filmes</a>
                 </li>
 
                 <li class="nav-item">
