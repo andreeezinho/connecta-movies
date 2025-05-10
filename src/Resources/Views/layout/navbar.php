@@ -21,6 +21,10 @@
                     <a href="/series" class="nav-link">Séries</a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="/minha-lista" class="nav-link">Minha-Lista</a>
+                </li>
+
                 <?php
                     if(isset($_SESSION['user'])){
                 ?>
