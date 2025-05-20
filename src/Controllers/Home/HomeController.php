@@ -28,9 +28,17 @@ class HomeController extends Controller {
         $random_filmes = $this->filmeRepository->randomMovies();
         $random_series = $this->serieRepository->randomSeries();
 
+        $search = $request->getQueryParams();
+        
+        if(isset($search['nome']) && !is_null($search['nome'])){
+            $random_filmes = $this->filmeRepository->all(['nome' => $search['nome'], 'ativo' => 1]);
+            $random_series = $this->serieRepository->all(['nome' => $search['nome'], 'ativo' => 1]);
+        }
+
         return $this->router->view('home/index', [
             'random_filmes' => $random_filmes,
-            'random_series' => $random_series
+            'random_series' => $random_series,
+            'search' => $search
         ]);
     }
 
