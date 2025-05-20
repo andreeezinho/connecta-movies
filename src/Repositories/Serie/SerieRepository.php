@@ -51,22 +51,6 @@ class SerieRepository implements ISerie {
         return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
     }
 
-    public function randomSeries(){
-        $sql = "SELECT * FROM " . self::TABLE ."
-            WHERE
-                ativo = :ativo
-            ORDER BY RAND()
-            LIMIT 12";
-
-        $stmt = $this->conn->prepare($sql);
-
-        $stmt->execute([
-            ':ativo' => 1
-        ]);
-
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
-    }
-
     public function create(array $data){
         $serie = $this->model->create($data);
 

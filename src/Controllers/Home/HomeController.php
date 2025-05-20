@@ -25,8 +25,8 @@ class HomeController extends Controller {
 
     public function index(Request $request){
 
-        $random_filmes = $this->filmeRepository->randomMovies();
-        $random_series = $this->serieRepository->randomSeries();
+        $random_filmes = $this->filmeRepository->random();
+        $random_series = $this->serieRepository->random();
 
         $search = $request->getQueryParams();
         
