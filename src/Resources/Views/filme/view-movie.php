@@ -15,11 +15,16 @@
     <a href="/" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
     <div class="movie-infos p-4">
-        <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info">
-        <h1 class="mt-3 text-light"><?= $filme->nome ?></h1>
+        <div class="capa-texto">
+            <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info">
+            
+            <div class="texto-info">
+                <h1 class="mt-3 text-light texto-info"><?= $filme->nome ?></h1>
 
-        <div class="col-12 col-md-6">
-            <p class="text-light my-3"><?= $filme->descricao ?></p>
+                <div class="col-12 col-md-6">
+                    <p class="text-light my-3"><?= $filme->descricao ?></p>
+                </div>
+            </div>
         </div>
 
         <div class="div col-12 mb-4 d-flex">
