@@ -195,6 +195,10 @@ class FilmeController extends Controller {
             return $this->router->redirect('404');
         }
 
+        if(!$filme->ativo){
+            return $this->router->redirect('404');
+        }
+
         $movieInList = $this->listaRepository->findByUserAndContentId($user->id, $filme->id, 'filmes');
         
         return $this->router->view('filme/view-movie', [

@@ -197,6 +197,10 @@ class SerieController extends Controller {
             return $this->router->redirect('404');
         }
 
+        if(!$serie->ativo){
+            return $this->router->redirect('404');
+        }
+
         $params = $request->getQueryParams();
 
         $params = array_merge($params, ['ativo' => 1]);
