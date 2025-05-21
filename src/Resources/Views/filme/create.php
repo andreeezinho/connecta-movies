@@ -38,16 +38,19 @@
                         include_once('form.php');
                     ?>
                     <div class="form-group text-center">
-                        <a href="/filmes" class="btn btn-secondary mx-1">Cancelar</a>
-                        <button type="submit" class="btn btn-primary mx-1" data-toggle="modal" data-target="#cadastrar-carrossel">Confirmar</button>
+                        <a href="/dashboard/filmes" class="btn btn-secondary mx-1">Cancelar</a>
+                        <button type="submit" class="btn btn-primary mx-1" data-toggle="modal" data-target="#cadastrar-carrossel" data-backdrop="static" data-keyboard="false">Confirmar</button>
 
                         <div class="modal fade" id="cadastrar-carrossel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content text-center text-dark py-2">
+                                <div class="modal-content text-center text-dark pt-4">
                                     <div class="spinner-border mx-auto" role="status">
                                         <span class="sr-only"></span>
                                     </div>
                                     <p>O vídeo está sendo carregado...</p>
+                                    <div class="text-center py-3">
+                                        <a href="/dashboard/filmes/cadastro" class="btn btn-danger">Cancelar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
