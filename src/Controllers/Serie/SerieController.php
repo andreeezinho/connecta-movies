@@ -5,14 +5,11 @@ namespace App\Controllers\Serie;
 use App\Request\Request;
 use App\Config\Auth;
 use App\Controllers\Controller;
-use App\Repositories\Serie\SerieRepository;
 use App\Interfaces\Serie\ISerie;
-use App\Repositories\Lista\ListaRepository;
 use App\Interfaces\Lista\ILista;
-use App\Repositories\Temporada\TemporadaRepository;
 use App\Interfaces\Temporada\ITemporada;
-use App\Repositories\Episodio\EpisodioRepository;
 use App\Interfaces\Episodio\IEpisodio;
+use App\Interfaces\Episodio\IAssistido;
 
 class SerieController extends Controller {
 
@@ -20,14 +17,16 @@ class SerieController extends Controller {
     protected $listaRepository;
     protected $temporadaRepository;
     protected $episodioRepository;
+    protected $assistidoRepository;
     protected $auth;
 
-    public function __construct(ISerie $serieRepository, ListaRepository $listaRepository, ITemporada $temporadaRepository, IEpisodio $episodioRepository, Auth $auth){
+    public function __construct(ISerie $serieRepository, ILista $listaRepository, ITemporada $temporadaRepository, IEpisodio $episodioRepository, IAssistido $assistidoRepository, Auth $auth){
         parent::__construct();
         $this->serieRepository = $serieRepository;
         $this->listaRepository = $listaRepository;
         $this->temporadaRepository = $temporadaRepository;
         $this->episodioRepository = $episodioRepository;
+        $this->assistidoRepository = $assistidoRepository;
         $this->auth = $auth;
     }
 
@@ -129,7 +128,7 @@ class SerieController extends Controller {
 
             $update = $this
                 ->serieRepository
-                ->updateImage('imagem', $serie->imagem, $data['imagem'], '/conteudos/capas/series/', $serie->id);
+                ->updateImage('imagem', $serie->imagem, $data['imagem'], '/img/conteudos/capas/series/', $serie->id);
 
             if(is_null($update)){
                 return $this->router->view('serie/edit-image', [
@@ -145,7 +144,7 @@ class SerieController extends Controller {
 
             $update = $this
             ->serieRepository
-            ->updateImage('banner', $serie->banner, $data['banner'], '/conteudos/banners/series/', $serie->id);
+            ->updateImage('banner', $serie->banner, $data['banner'], '/img/conteudos/banners/series/', $serie->id);
 
             if(is_null($update)){
                 return $this->router->view('serie/edit-image', [
@@ -197,6 +196,10 @@ class SerieController extends Controller {
             return $this->router->redirect('404');
         }
 
+        if(!$serie->ativo){
+            return $this->router->redirect('404');
+        }
+
         $params = $request->getQueryParams();
 
         $params = array_merge($params, ['ativo' => 1]);
@@ -208,6 +211,8 @@ class SerieController extends Controller {
         $temporada = $this->temporadaRepository->findByNumberAndSerieId($params['temp'] ?? 1, $serie->id);
 
         $allEpisodesInSeason = $this->episodioRepository->all(['temporadas_id' => $temporada->id ?? 1, 'ativo' => 1]);
+
+        $allUserWatchedEpisodes = $this->assistidoRepository->all(['usuarios_id' => $user->id]);
         
         return $this->router->view('serie/view-serie', [
             'serie' => $serie,
@@ -215,7 +220,8 @@ class SerieController extends Controller {
             'temporadas' => $allActiveSeasons,
             'season' => $temporada,
             'temp' => $params['temp'] ?? 1,
-            'episodios' => $allEpisodesInSeason
+            'episodios' => $allEpisodesInSeason,
+            'allUserWatchedEpisodes' => $allUserWatchedEpisodes
         ]);
     }
 

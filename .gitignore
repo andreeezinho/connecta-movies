@@ -1,8 +1,13 @@
 public/img/user/icons/**
+!public/img/user/icons/default.png
 public/img/conteudos/capas/filmes/**
 public/img/conteudos/capas/series/**
+!public/img/conteudos/capas/filmes/default.png
+!public/img/conteudos/capas/series/default.png
 public/img/conteudos/banners/series/**
 public/img/conteudos/banners/filmes/**
+!public/img/conteudos/banners/series/default.png
+!public/img/conteudos/banners/filmes/default.png
 public/conteudos/filmes/**
 public/conteudos/series/**
 src/env/app.php
