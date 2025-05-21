@@ -68,7 +68,7 @@ function createFile($arquivo, $dir, $type){
     return null;
 }
 
-function removeImage($arquivo, $dir){
+function removeFile($arquivo, $dir){
     $path = rtrim($_SERVER['DOCUMENT_ROOT'] . '/public' . $dir, "/") . '/' . $arquivo;
 
     if(file_exists($path)){

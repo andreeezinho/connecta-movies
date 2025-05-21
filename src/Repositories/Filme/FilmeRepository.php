@@ -136,7 +136,7 @@ class FilmeRepository implements IFilme {
     }
 
     public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){
-        $delete = removeImage($oldImage, $dir);
+        $delete = removeFile($oldImage, $dir);
 
         if(!$delete){
             return null;
