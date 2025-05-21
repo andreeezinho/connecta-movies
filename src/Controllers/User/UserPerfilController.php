@@ -35,7 +35,7 @@ class UserPerfilController extends Controller {
             $icone = $_FILES['icone'];
         }
 
-        $dir = "/user/icons";
+        $dir = "/img/user/icons";
 
         if($icone['name'] == ""){
             return $this->router->view('user/perfil/index', [

@@ -54,9 +54,9 @@ class SerieRepository implements ISerie {
     public function create(array $data){
         $serie = $this->model->create($data);
 
-        $imagem = createImage($data['imagem'], '/conteudos/capas/series');
+        $imagem = createFile($data['imagem'], '/img/conteudos/capas/series', 'image');
 
-        $banner = createImage($data['banner'], '/conteudos/banners/series');
+        $banner = createFile($data['banner'], '/img/conteudos/banners/series', 'image');
 
         try{
             $sql = "INSERT INTO " . self::TABLE . "
@@ -135,7 +135,7 @@ class SerieRepository implements ISerie {
             return null;
         }
 
-        $newImage = createImage($image, $dir);
+        $newImage = createFile($image, $dir, 'image');
 
         if(is_null($newImage)){
             return null;

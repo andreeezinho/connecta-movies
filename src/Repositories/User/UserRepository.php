@@ -182,7 +182,7 @@ class UserRepository implements IUser {
     }
 
     public function updateIcone(int $id, array $icone, string $dir){
-        $updateIcone = createImage($icone, $dir);
+        $updateIcone = createFile($icone, $dir, 'image');
 
         if(is_null($updateIcone)){
             return null;

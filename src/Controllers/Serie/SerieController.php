@@ -129,7 +129,7 @@ class SerieController extends Controller {
 
             $update = $this
                 ->serieRepository
-                ->updateImage('imagem', $serie->imagem, $data['imagem'], '/conteudos/capas/series/', $serie->id);
+                ->updateImage('imagem', $serie->imagem, $data['imagem'], '/img/conteudos/capas/series/', $serie->id);
 
             if(is_null($update)){
                 return $this->router->view('serie/edit-image', [
@@ -145,7 +145,7 @@ class SerieController extends Controller {
 
             $update = $this
             ->serieRepository
-            ->updateImage('banner', $serie->banner, $data['banner'], '/conteudos/banners/series/', $serie->id);
+            ->updateImage('banner', $serie->banner, $data['banner'], '/img/conteudos/banners/series/', $serie->id);
 
             if(is_null($update)){
                 return $this->router->view('serie/edit-image', [

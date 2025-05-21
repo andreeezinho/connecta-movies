@@ -54,11 +54,11 @@ class FilmeRepository implements IFilme {
     public function create(array $data){
         $filme = $this->model->create($data);
 
-        $imagem = createImage($data['imagem'], '/conteudos/capas/filmes');
+        $imagem = createFile($data['imagem'], '/img/conteudos/capas/filmes', 'image');
 
-        $banner = createImage($data['banner'], '/conteudos/banners/filmes');
+        $banner = createFile($data['banner'], '/img/conteudos/banners/filmes', 'image');
 
-        $video = createVideo($data['filme'], '/filmes');
+        $video = createFile($data['filme'], '/conteudos/filmes', 'video');
 
         if(is_null($video)){
             return null;
@@ -142,7 +142,7 @@ class FilmeRepository implements IFilme {
             return null;
         }
 
-        $newImage = createImage($image, $dir);
+        $newImage = createFile($image, $dir, 'image');
 
         if(is_null($newImage)){
             return null;

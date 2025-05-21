@@ -59,7 +59,7 @@ class EpisodioRepository implements IEpisodio {
     public function create(array $data, int $temporadas_id){
         $episodio = $this->model->create($data, $temporadas_id);
 
-        $video = createVideo($data['episodio'], '/series');
+        $video = createFile($data['episodio'], '/conteudos/series', 'video');
 
         if(is_null($video)){
             return null;
