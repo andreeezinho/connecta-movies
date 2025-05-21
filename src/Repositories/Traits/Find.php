@@ -39,4 +39,20 @@ trait Find {
         return $result;
     }
 
+    public function random(){
+        $sql = "SELECT * FROM " . self::TABLE ."
+            WHERE
+                ativo = :ativo
+            ORDER BY RAND()
+            LIMIT 12";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute([
+            ':ativo' => 1
+        ]);
+
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
+    }
+
 }

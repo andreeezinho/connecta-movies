@@ -51,30 +51,14 @@ class FilmeRepository implements IFilme {
         return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
     }
 
-    public function randomMovies(){
-        $sql = "SELECT * FROM " . self::TABLE ."
-            WHERE
-                ativo = :ativo
-            ORDER BY RAND()
-            LIMIT 12";
-
-        $stmt = $this->conn->prepare($sql);
-
-        $stmt->execute([
-            ':ativo' => 1
-        ]);
-
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
-    }
-
     public function create(array $data){
         $filme = $this->model->create($data);
 
-        $imagem = createImage($data['imagem'], '/conteudos/capas/filmes');
+        $imagem = createFile($data['imagem'], '/img/conteudos/capas/filmes', 'image');
 
-        $banner = createImage($data['banner'], '/conteudos/banners/filmes');
+        $banner = createFile($data['banner'], '/img/conteudos/banners/filmes', 'image');
 
-        $video = createVideo($data['filme'], '/filmes');
+        $video = createFile($data['filme'], '/conteudos/filmes', 'video');
 
         if(is_null($video)){
             return null;
@@ -152,13 +136,13 @@ class FilmeRepository implements IFilme {
     }
 
     public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){
-        $delete = removeImage($oldImage, $dir);
+        $delete = removeFile($oldImage, $dir);
 
         if(!$delete){
             return null;
         }
 
-        $newImage = createImage($image, $dir);
+        $newImage = createFile($image, $dir, 'image');
 
         if(is_null($newImage)){
             return null;

@@ -189,6 +189,25 @@
     .banner-carousel{
         min-height: 20vh;
         max-height: 20vh;
+    }   
+}
+
+@media(max-height: 750px){
+    .capa-texto{
+        display: flex;
     }
-    
+
+    .texto-info{
+        align-content: end;
+    }
+}
+
+@media(max-height: 650px){
+    .capa-texto{
+        display: block;
+    }
+
+    .capa-info{
+        display: none;
+    }
 }

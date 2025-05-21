@@ -51,28 +51,12 @@ class SerieRepository implements ISerie {
         return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
     }
 
-    public function randomSeries(){
-        $sql = "SELECT * FROM " . self::TABLE ."
-            WHERE
-                ativo = :ativo
-            ORDER BY RAND()
-            LIMIT 12";
-
-        $stmt = $this->conn->prepare($sql);
-
-        $stmt->execute([
-            ':ativo' => 1
-        ]);
-
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
-    }
-
     public function create(array $data){
         $serie = $this->model->create($data);
 
-        $imagem = createImage($data['imagem'], '/conteudos/capas/series');
+        $imagem = createFile($data['imagem'], '/img/conteudos/capas/series', 'image');
 
-        $banner = createImage($data['banner'], '/conteudos/banners/series');
+        $banner = createFile($data['banner'], '/img/conteudos/banners/series', 'image');
 
         try{
             $sql = "INSERT INTO " . self::TABLE . "
@@ -145,13 +129,13 @@ class SerieRepository implements ISerie {
     }
 
     public function updateImage(string $type, string $oldImage, array $image, string $dir, int $id){
-        $delete = removeImage($oldImage, $dir);
+        $delete = removeFile($oldImage, $dir);
 
         if(!$delete){
             return null;
         }
 
-        $newImage = createImage($image, $dir);
+        $newImage = createFile($image, $dir, 'image');
 
         if(is_null($newImage)){
             return null;

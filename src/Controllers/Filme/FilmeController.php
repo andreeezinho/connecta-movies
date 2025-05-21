@@ -124,7 +124,7 @@ class FilmeController extends Controller {
 
             $update = $this
                 ->filmeRepository
-                ->updateImage('imagem', $filme->imagem, $data['imagem'], '/conteudos/capas/filmes/', $filme->id);
+                ->updateImage('imagem', $filme->imagem, $data['imagem'], '/img/conteudos/capas/filmes/', $filme->id);
 
             if(is_null($update)){
                 return $this->router->view('filme/edit-image', [
@@ -140,7 +140,7 @@ class FilmeController extends Controller {
 
             $update = $this
             ->filmeRepository
-            ->updateImage('banner', $filme->banner, $data['banner'], '/conteudos/banners/filmes/', $filme->id);
+            ->updateImage('banner', $filme->banner, $data['banner'], '/img/conteudos/banners/filmes/', $filme->id);
 
             if(is_null($update)){
                 return $this->router->view('filme/edit-image', [
@@ -192,6 +192,10 @@ class FilmeController extends Controller {
         $filme = $this->filmeRepository->findByUuid($uuid);
 
         if(!$filme){
+            return $this->router->redirect('404');
+        }
+
+        if(!$filme->ativo){
             return $this->router->redirect('404');
         }
 

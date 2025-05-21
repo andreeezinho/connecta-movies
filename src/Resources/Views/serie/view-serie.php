@@ -81,6 +81,18 @@
                             <div class="col-12 text-start px-5">
                                 Episódio <?= $episodio->numero ?>
                                 <i class="bi-chevron-down float-end"></i>
+                                <?php
+                                    if(count($allUserWatchedEpisodes) > 0){
+                                        foreach($allUserWatchedEpisodes as $watched){
+                                            if($episodio->id == $watched->episodios_id){
+                                                
+                                ?>
+                                            <i class="bi-check-lg text-success float-end me-3"></i>
+                                <?php
+                                            }
+                                        }
+                                    }
+                                ?>
                             </div>
                         </a>
                     <?php

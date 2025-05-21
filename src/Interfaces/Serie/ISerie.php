@@ -6,7 +6,7 @@ interface ISerie {
 
     public function all(array $params = []);
 
-    public function randomSeries();
+    public function random();
 
     public function create(array $data);
 

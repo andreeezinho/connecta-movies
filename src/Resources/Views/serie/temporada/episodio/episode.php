@@ -16,7 +16,7 @@
          <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/ogg' />
      </video>
 
-     <a href="/series/<?= $serie->uuid ?>/infos" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
+     <a href="/series/<?= $serie->uuid ?>/infos?temp=<?= $temporada->numero ?>" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
      <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $serie->nome ?></h2>
 

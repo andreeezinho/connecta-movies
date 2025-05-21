@@ -21,13 +21,13 @@
                     <a href="/series" class="nav-link">Séries</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/minha-lista" class="nav-link">Minha-Lista</a>
-                </li>
-
                 <?php
                     if(isset($_SESSION['user'])){
                 ?>
+
+                    <li class="nav-item">
+                        <a href="/minha-lista" class="nav-link">Minha-Lista</a>
+                    </li>
 
                     <li class="nav-item dropdown d-block d-md-none">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-usuario" data-bs-toggle="dropdown" aria-expanded="false">
