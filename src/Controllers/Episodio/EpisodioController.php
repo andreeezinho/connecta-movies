@@ -205,6 +205,12 @@ class EpisodioController extends Controller {
             return $this->router->redirect('404');
         }
 
+        $temporada = $this->temporadaRepository->findById($episodio->temporadas_id);
+
+        if(!$temporada){
+            return $this->router->redirect('404');
+        }
+
         $user = $this->auth->user();
         
         if(!$this->assistidoRepository->findByUserAndEpisodeId($user->id, $episodio->id)){
@@ -213,6 +219,7 @@ class EpisodioController extends Controller {
 
         return $this->router->view('serie/temporada/episodio/episode', [
             'serie' => $serie,
+            'temporada' => $temporada,
             'episodio' => $episodio
         ]);
     }
