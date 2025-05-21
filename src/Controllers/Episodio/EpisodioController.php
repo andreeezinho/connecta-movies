@@ -5,23 +5,23 @@ namespace App\Controllers\Episodio;
 use App\Request\Request;
 use App\Config\Auth;
 use App\Controllers\Controller;
-use App\Repositories\Episodio\EpisodioRepository;
 use App\Interfaces\Episodio\IEpisodio;
-use App\Repositories\Temporada\TemporadaRepository;
+use App\Interfaces\Episodio\IAssistido;
 use App\Interfaces\Temporada\ITemporada;
-use App\Repositories\Serie\SerieRepository;
 use App\Interfaces\Serie\ISerie;
 
 class EpisodioController extends Controller {
 
     protected $episodioRepository;
+    protected $assistidoRepository;
     protected $temporadaRepository;
     protected $serieRepository;
     protected $auth;
 
-    public function __construct(IEpisodio $episodioRepository, ITemporada $temporadaRepository, ISerie $serieRepository, Auth $auth){
+    public function __construct(IEpisodio $episodioRepository, IAssistido $assistidoRepository, ITemporada $temporadaRepository, ISerie $serieRepository, Auth $auth){
         parent::__construct();
         $this->episodioRepository = $episodioRepository;
+        $this->assistidoRepository = $assistidoRepository;
         $this->temporadaRepository = $temporadaRepository;
         $this->serieRepository = $serieRepository;
         $this->auth = $auth;
@@ -203,6 +203,12 @@ class EpisodioController extends Controller {
 
         if(!$episodio){
             return $this->router->redirect('404');
+        }
+
+        $user = $this->auth->user();
+        
+        if(!$this->assistidoRepository->findByUserAndEpisodeId($user->id, $episodio->id)){
+            $makeEpisodeWatched = $this->assistidoRepository->create(null, $user->id, $episodio->id);
         }
 
         return $this->router->view('serie/temporada/episodio/episode', [
