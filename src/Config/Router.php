@@ -37,6 +37,8 @@ class Router {
 
                 if(preg_match($pattern, $normalizedRequestUri, $matches)){
                     if(!is_null($route['auth']) && !$route['auth']->check()){
+                        $_SESSION['attempted_uri'] = ltrim($normalizedRequestUri, '/');
+
                         return $this->view('login/login', [
                             'erro' => 'Faça login para continuar'
                         ]);
