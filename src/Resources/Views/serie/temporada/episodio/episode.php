@@ -20,7 +20,7 @@
 
     <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $serie->nome ?></h2>
      
-    <a href="" class="position-absolute btn btn-light p-2 px-4 rounded fw-bold" id="skip-button">
+    <a href="/<?= $proxEp ?>" class="position-absolute btn btn-light p-2 px-4 rounded fw-bold" id="skip-button">
         Avançar
         <i class="bi bi-chevron-double-right ml-6"></i>
     </a>
