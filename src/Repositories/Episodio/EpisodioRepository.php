@@ -176,8 +176,10 @@ class EpisodioRepository implements IEpisodio {
                 "
         );
 
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute([
+            ':numero' => $number,
+            ':temp_id' => $temp_id
+        ]);
 
         $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::CLASS_NAME);
         $result = $stmt->fetch();

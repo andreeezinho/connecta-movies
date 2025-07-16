@@ -9,16 +9,21 @@
     <link rel="stylesheet" href="<?= URL_SITE ?>/public/css/style.css">
     <title><?= SITE_NAME ?></title>
 </head>
-<body class="bg-dark">
-    <video controls nodownload class="movie">
-         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/webm' />
-         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/ogg' />
-     </video>
+<body class="bg-dark position-relative">
+    <video controls nodownload class="movie" id="episode">
+        <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/webm' />
+        <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/ogg' />
+    </video>
 
-     <a href="/series/<?= $serie->uuid ?>/infos?temp=<?= $temporada->numero ?>" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
+    <a href="/series/<?= $serie->uuid ?>/infos?temp=<?= $temporada->numero ?>" class="back-link link-light text-decoration-none fw-bold"><i class="bi-chevron-double-left"></i> VOLTAR</a>
 
-     <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $serie->nome ?></h2>
+    <h2 class="movie-title link-light text-decoration-none fw-bold"><?= $serie->nome ?></h2>
+     
+    <a href="" class="position-absolute btn btn-light p-2 px-4 rounded fw-bold" id="skip-button">
+        Avançar
+        <i class="bi bi-chevron-double-right ml-6"></i>
+    </a>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -26,5 +31,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="<?= URL_SITE ?>/public/js/script.js"></script>
+    <script>
+        var proxEp = "<?= $proxEp ?>";
+    </script>
+    <script src="<?= URL_SITE ?>/public/js/episode.js"></script>
 </body>
 </html>

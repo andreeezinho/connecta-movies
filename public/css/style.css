@@ -146,6 +146,11 @@
     background-color: #acacac;
 }
 
+#skip-button{
+    bottom: 100px;
+    right: 2em;
+}
+
 @media(min-width: 721px){
     .capa-preview{
         position: absolute;
