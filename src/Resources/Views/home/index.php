@@ -160,7 +160,7 @@
                                 foreach($lista_filmes as $filme){
                         ?>
                             <div class="mx-3">
-                                <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
+                                <a href="/filmes/<?= $filme->filme_uuid ?>/infos" class="border-0">
                                     <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->nome ?>">
                                 </a>
                             </div>
@@ -186,7 +186,7 @@
                                 foreach($lista_series as $series){
                         ?>
                             <div class="mx-3">
-                                <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
+                                <a href="/series/<?= $series->filme_uuid ?>/infos" class="border-0">
                                     <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="capa hover-border" alt="<?= $series->nome ?>">
                                 </a>
                             </div>
