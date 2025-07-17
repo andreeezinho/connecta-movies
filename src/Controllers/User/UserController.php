@@ -130,7 +130,11 @@ class UserController extends Controller {
         $auth = new Auth();
 
         if($auth->login($user)){
-            return $this->router->redirect('');
+            $attempted_uri = $_SESSION['attempted_uri'] ?? null;
+
+            unset($_SESSION['attempted_uri']);
+
+            return $this->router->redirect($attempted_uri ?? 'dashboard');
         }
 
         return $this->router->view('login/login', [

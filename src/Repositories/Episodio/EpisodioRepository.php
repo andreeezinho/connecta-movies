@@ -166,4 +166,29 @@ class EpisodioRepository implements IEpisodio {
         }
     }
 
+    public function findByNumberAndTempId(int $number, int $temp_id){
+        $stmt = $this->conn->prepare(
+            "SELECT * FROM " . self::TABLE . " 
+                WHERE 
+                    numero = :numero 
+                AND 
+                    temporadas_id = :temp_id
+                "
+        );
+
+        $stmt->execute([
+            ':numero' => $number,
+            ':temp_id' => $temp_id
+        ]);
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, self::CLASS_NAME);
+        $result = $stmt->fetch();
+
+        if(is_null($result)){
+            return null;
+        }
+
+        return $result;
+    }
+
 }

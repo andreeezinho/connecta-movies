@@ -12,6 +12,8 @@ interface IEpisodio {
 
     public function delete(int $id);
 
+    public function findByNumberAndTempId(int $number, int $temp_id);
+
     public function findById(int $id);
 
     public function findByUuid(string $uuid);

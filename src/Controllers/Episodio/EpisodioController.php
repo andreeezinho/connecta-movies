@@ -217,10 +217,17 @@ class EpisodioController extends Controller {
             $makeEpisodeWatched = $this->assistidoRepository->create(null, $user->id, $episodio->id);
         }
 
+        $proxEp = $this->episodioRepository->findByNumberAndTempId($episodio->numero + 1, $temporada->id);
+        
+        if($proxEp){
+            $urlProxEp = 'series/' . $serie->uuid . '/' . $proxEp->uuid;
+        }
+
         return $this->router->view('serie/temporada/episodio/episode', [
             'serie' => $serie,
             'temporada' => $temporada,
-            'episodio' => $episodio
+            'episodio' => $episodio,
+            'proxEp' => $urlProxEp ?? null
         ]);
     }
 
