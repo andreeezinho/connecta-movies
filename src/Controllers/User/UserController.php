@@ -134,7 +134,7 @@ class UserController extends Controller {
 
             unset($_SESSION['attempted_uri']);
 
-            return $this->router->redirect($attempted_uri ?? 'dashboard');
+            return $this->router->redirect($attempted_uri ?? '');
         }
 
         return $this->router->view('login/login', [
