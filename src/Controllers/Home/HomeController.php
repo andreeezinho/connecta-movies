@@ -28,8 +28,10 @@ class HomeController extends Controller {
     public function index(Request $request){
         $random_filmes = $this->filmeRepository->random();
         $random_series = $this->serieRepository->random();
-        $lista_filmes = $this->listaRepository->all(['tipo' => 'filmes','ativo' => 1], $this->auth->user()->id);
-        $lista_series = $this->listaRepository->all(['tipo' => 'series','ativo' => 1], $this->auth->user()->id);
+        if($this->auth->user()){
+            $lista_filmes = $this->listaRepository->all(['tipo' => 'filmes','ativo' => 1], $this->auth->user()->id);
+            $lista_series = $this->listaRepository->all(['tipo' => 'series','ativo' => 1], $this->auth->user()->id);
+        }
 
         $search = $request->getQueryParams();
         
@@ -41,8 +43,8 @@ class HomeController extends Controller {
         return $this->router->view('home/index', [
             'random_filmes' => $random_filmes,
             'random_series' => $random_series,
-            'lista_filmes' => $lista_filmes,
-            'lista_series' => $lista_series,
+            'lista_filmes' => $lista_filmes ?? null,
+            'lista_series' => $lista_series ?? null,
             'search' => $search
         ]);
     }

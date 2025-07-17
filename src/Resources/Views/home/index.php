@@ -144,60 +144,66 @@
             </div>
         </div>
 
-        <div class="mt-5">
-            <h1>Minha Lista</h1>
-        </div>
+        <?php
+            if(isset($_SESSION['user'])){
+        ?>
+            <div class="mt-5">
+                <h1>Minha Lista</h1>
+            </div>
 
-        <div class="bg-light rounded border p-4">
-            <p class="text-muted border-bottom">Filmes</p>
-            <div class="row mt-3 g-3 pb-4">
-                <div class="slick-slider">
-                    <?php
-                        if(count($lista_filmes) > 0){
-                            foreach($lista_filmes as $filme){
-                    ?>
-                        <div class="mx-3">
-                            <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
-                                <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->nome ?>">
-                            </a>
-                        </div>
-                    <?php
+            <div class="bg-light rounded border p-4">
+                <p class="text-muted border-bottom">Filmes</p>
+                <div class="row mt-3 g-3 pb-4">
+                    <div class="slick-slider">
+                        <?php
+                            if(count($lista_filmes) > 0){
+                                foreach($lista_filmes as $filme){
+                        ?>
+                            <div class="mx-3">
+                                <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
+                                    <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->nome ?>">
+                                </a>
+                            </div>
+                        <?php
+                                }
+                            }else{
+                        ?>
+                            <p class="text-muted">Ainda não há filmes...</p>
+                        <?php
                             }
-                        }else{
-                    ?>
-                        <p class="text-muted">Ainda não há filmes...</p>
-                    <?php
-                        }
-                    ?>
+                        ?>
+                    </div>
+                </div>
+
+                <div class="border-bottom mt-2">
+                    <p class="text-muted">Séries</p>
+                </div>
+
+                <div class="row mt-3 g-3 pb-4">
+                    <div class="slick-slider">
+                        <?php
+                            if(count($lista_series) > 0){
+                                foreach($lista_series as $series){
+                        ?>
+                            <div class="mx-3">
+                                <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
+                                    <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="capa hover-border" alt="<?= $series->nome ?>">
+                                </a>
+                            </div>
+                        <?php
+                                }
+                            }else{
+                        ?>
+                            <p class="text-muted">Ainda não há filmes...</p>
+                        <?php
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
-
-            <div class="border-bottom mt-2">
-                <p class="text-muted">Séries</p>
-            </div>
-
-            <div class="row mt-3 g-3 pb-4">
-                <div class="slick-slider">
-                    <?php
-                        if(count($lista_series) > 0){
-                            foreach($lista_series as $series){
-                    ?>
-                        <div class="mx-3">
-                            <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
-                                <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="capa hover-border" alt="<?= $series->nome ?>">
-                            </a>
-                        </div>
-                    <?php
-                            }
-                        }else{
-                    ?>
-                        <p class="text-muted">Ainda não há filmes...</p>
-                    <?php
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
+        <?php
+            }
+        ?>
     </div>
 
     
