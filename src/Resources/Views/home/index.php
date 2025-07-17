@@ -88,23 +88,25 @@
         </div>
 
         <div class="row mt-3 g-3 pb-4 border rounded bg-light">
-            <?php
-                if(count($random_filmes) > 0){
-                    foreach($random_filmes as $filme){
-            ?>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
-                        <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $filme->nome ?>">
-                    </a>
-                </div>
-            <?php
+            <div class="slick-slider">
+                <?php
+                    if(count($random_filmes) > 0){
+                        foreach($random_filmes as $filme){
+                ?>
+                    <div class="mx-3">
+                        <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
+                            <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->nome ?>">
+                        </a>
+                    </div>
+                <?php
+                        }
+                    }else{
+                ?>
+                    <p class="text-muted">Ainda não há filmes...</p>
+                <?php
                     }
-                }else{
-            ?>
-                <p class="text-muted">Ainda não há filmes...</p>
-            <?php
-                }
-            ?>
+                ?>
+            </div>
             
             <div class="justify-content-center text-center">
                 <a href="/filmes" class="btn btn-outline-primary py-2 px-4 rounded-pill">Veja mais <i class="bi-arrow-down"></i></a>
@@ -117,29 +119,88 @@
         </div>
 
         <div class="row mt-3 g-3 pb-4 border rounded bg-light">
-            <?php
-                if(count($random_series) > 0){
-                    foreach($random_series as $series){
-            ?>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
-                        <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="col-12 col-md-4 col-lg-2 capa hover-border" alt="<?= $series->nome ?>">
-                    </a>
-                </div>
-            <?php
+            <div class="slick-slider">
+                <?php
+                    if(count($random_series) > 0){
+                        foreach($random_series as $series){
+                ?>
+                    <div class="mx-3">
+                        <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
+                            <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="capa hover-border" alt="<?= $series->nome ?>">
+                        </a>
+                    </div>
+                <?php
+                        }
+                    }else{
+                ?>
+                    <p class="text-muted">Ainda não há filmes...</p>
+                <?php
                     }
-                }else{
-            ?>
-                <p class="text-muted">Ainda não há filmes...</p>
-            <?php
-                }
-            ?>
+                ?>
+            </div>
             
             <div class="justify-content-center text-center">
                 <a href="/series" class="btn btn-outline-primary py-2 px-4 rounded-pill">Veja mais <i class="bi-arrow-down"></i></a>
             </div>
         </div>
+
+        <div class="mt-5">
+            <h1>Minha Lista</h1>
+        </div>
+
+        <div class="bg-light rounded border p-4">
+            <p class="text-muted border-bottom">Filmes</p>
+            <div class="row mt-3 g-3 pb-4">
+                <div class="slick-slider">
+                    <?php
+                        if(count($lista_filmes) > 0){
+                            foreach($lista_filmes as $filme){
+                    ?>
+                        <div class="mx-3">
+                            <a href="/filmes/<?= $filme->uuid ?>/infos" class="border-0">
+                                <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->nome ?>">
+                            </a>
+                        </div>
+                    <?php
+                            }
+                        }else{
+                    ?>
+                        <p class="text-muted">Ainda não há filmes...</p>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+
+            <div class="border-bottom mt-2">
+                <p class="text-muted">Séries</p>
+            </div>
+
+            <div class="row mt-3 g-3 pb-4">
+                <div class="slick-slider">
+                    <?php
+                        if(count($lista_series) > 0){
+                            foreach($lista_series as $series){
+                    ?>
+                        <div class="mx-3">
+                            <a href="/series/<?= $series->uuid ?>/infos" class="border-0">
+                                <img src="/public/img/conteudos/capas/series/<?= $series->imagem ?>" class="capa hover-border" alt="<?= $series->nome ?>">
+                            </a>
+                        </div>
+                    <?php
+                            }
+                        }else{
+                    ?>
+                        <p class="text-muted">Ainda não há filmes...</p>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>
+
+    
 
 <?php
     require_once __DIR__ . '/../layout/bottom.php';
