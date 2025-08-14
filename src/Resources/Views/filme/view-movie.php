@@ -16,10 +16,10 @@
 
     <div class="movie-infos p-4">
         <div class="capa-texto">
-            <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info">
+            <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" alt="Capa" class="capa-info mb-2">
             
             <div class="texto-info">
-                <h1 class="mt-3 text-light texto-info"><?= $filme->nome ?></h1>
+                <h1 class="mt-3 text-light titulo-info"><?= $filme->nome ?></h1>
 
                 <div class="col-12 col-md-6">
                     <p class="text-light my-3"><?= $filme->descricao ?></p>

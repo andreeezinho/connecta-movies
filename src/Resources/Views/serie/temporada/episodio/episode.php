@@ -10,7 +10,7 @@
     <title><?= SITE_NAME ?></title>
 </head>
 <body class="bg-dark position-relative">
-    <video controls nodownload class="movie" id="episode">
+    <video controls autoplay class="movie" id="episode">
         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/webm' />
         <source src="/public/conteudos/series/<?= $episodio->path ?>" type='video/ogg' />

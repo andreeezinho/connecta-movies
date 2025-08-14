@@ -10,7 +10,7 @@
     <title><?= SITE_NAME ?></title>
 </head>
 <body class="bg-dark">
-    <video controls nodownload class="movie">
+    <video controls autoplay class="movie">
          <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
          <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/webm' />
          <source src="/public/conteudos/filmes/<?= $filme->path ?>" type='video/ogg' />
