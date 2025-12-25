@@ -4,6 +4,8 @@ namespace App\Interfaces\Colecao;
 
 interface IColecaoFilme {
 
+    public function all(array $params = []);
+
     public function allMoviesInCollection(int $collection_id);
 
     public function insertMovieInCollection(int $collection_id, int $movie_id);

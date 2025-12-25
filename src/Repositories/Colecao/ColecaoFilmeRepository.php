@@ -22,6 +22,43 @@ class ColecaoFilmeRepository implements IColecaoFilme {
         $this->model = new ColecaoFilme();
     }
 
+    public function all(array $params = []){
+        $sql = "SELECT 
+                    cf.*, 
+                    c.uuid as colecao_uuid, c.nome as colecao_nome, 
+                    f.uuid as filme_uuid, f.nome as filme_nome, f.imagem as imagem 
+            FROM " . self::TABLE . " cf
+            JOIN
+                colecoes c
+            ON
+                colecoes_id = c.id
+            JOIN
+                filmes f
+            ON
+                filmes_id = f.id
+        ";
+    
+        $conditions = [];
+        $bindings = [];
+    
+        if(isset($params['ativo']) && $params['ativo'] != ""){
+            $conditions[] = "ativo = :ativo";
+            $bindings[':ativo'] = $params['ativo'];
+        }
+    
+        if(count($conditions) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        $sql .= " ORDER BY id ASC";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute($bindings);
+
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, self::CLASS_NAME);
+    }
+
     public function allMoviesInCollection(int $collection_id){
         $sql = "SELECT 
                     cf.*, 
