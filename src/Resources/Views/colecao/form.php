@@ -1,6 +1,11 @@
 <div class="col-12 col-md-12 form-group my-2">
     <label for="nome">Nome</label>
-    <input type="text" name="nome" id="nome" class="form-control py-2" placeholder="Insira seu nome" value="<?= $colecao->nome ?? '' ?>">
+    <input type="text" name="nome" id="nome" class="form-control py-2" placeholder="Insira o nome" value="<?= $colecao->nome ?? '' ?>">
+</div>
+
+<div class="col-12 col-md-12 form-group my-2">
+    <label for="descricao">Descrição</label>
+    <input type="text" name="descricao" id="descricao" class="form-control py-2" placeholder="Insira a descrição" value="<?= $colecao->descricao ?? '' ?>">
 </div>
 
 <div class="col-12 form-group my-2">

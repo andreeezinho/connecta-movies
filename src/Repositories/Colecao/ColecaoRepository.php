@@ -59,6 +59,7 @@ class ColecaoRepository implements IColecao {
                 SET
                     uuid = :uuid,
                     nome = :nome,
+                    descricao = :descricao,
                     ativo = :ativo
             ";
 
@@ -67,6 +68,7 @@ class ColecaoRepository implements IColecao {
             $create = $stmt->execute([
                 ':uuid' => $colecao->uuid,
                 ':nome' => $colecao->nome,
+                ':descricao' => $colecao->descricao,
                 ':ativo' => $colecao->ativo
             ]);
 
@@ -90,6 +92,7 @@ class ColecaoRepository implements IColecao {
             $sql = "UPDATE " . self::TABLE . "
                 SET
                     nome = :nome,
+                    descricao = :descricao,
                     ativo = :ativo
                 WHERE
                     id = :id
@@ -100,6 +103,7 @@ class ColecaoRepository implements IColecao {
 
             $update = $stmt->execute([
                 ':nome' => $colecao->nome,
+                ':descricao' => $colecao->descricao,
                 ':ativo' => $colecao->ativo,
                 ':id' => $id
             ]);

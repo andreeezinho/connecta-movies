@@ -13,6 +13,7 @@ class ColecaoFilme {
     public $colecoes_id;
     public $colecao_uuid;
     public $colecao_nome;
+    public $colecao_descricao;
     public $filmes_id;
     public $filme_uuid;
     public $filme_nome;

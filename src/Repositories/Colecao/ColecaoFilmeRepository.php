@@ -25,7 +25,7 @@ class ColecaoFilmeRepository implements IColecaoFilme {
     public function all(array $params = []){
         $sql = "SELECT 
                     cf.*, 
-                    c.uuid as colecao_uuid, c.nome as colecao_nome, 
+                    c.uuid as colecao_uuid, c.nome as colecao_nome, c.descricao as colecao_descricao, 
                     f.uuid as filme_uuid, f.nome as filme_nome, f.imagem as imagem 
             FROM " . self::TABLE . " cf
             JOIN

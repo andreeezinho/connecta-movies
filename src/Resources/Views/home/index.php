@@ -149,8 +149,8 @@
                 foreach($collections as $collection){
         ?>  
             <div class="border-bottom mt-5">
-                <h3><?= $collection->nome ?></h3>
-                <!-- <p class="text-muted"><?= $collection->descricao ?></p> -->
+                <h3 class="mb-1"><?= $collection->nome ?></h3>
+                <p class="text-muted m-0"><small><?= $collection->descricao ?></small></p>
             </div>
 
             <div class="row mt-3 g-3 pb-4 border rounded bg-light">
