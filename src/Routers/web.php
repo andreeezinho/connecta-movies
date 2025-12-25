@@ -17,7 +17,7 @@ use App\Controllers\Lista\ListaController;
 use App\Controllers\Serie\SerieController;
 use App\Controllers\Temporada\TemporadaController;
 use App\Controllers\Episodio\EpisodioController;
-
+use App\Controllers\Colecao\ColecaoController;
 
 $router = new Router();
 $auth = new Auth();
@@ -39,6 +39,7 @@ $listaController = $container->get(ListaController::class);
 $serieController = $container->get(SerieController::class);
 $temporadaController = $container->get(TemporadaController::class);
 $episodioController = $container->get(EpisodioController::class);
+$colecaoController = $container->get(ColecaoController::class);
 
 //rotas
 
@@ -134,5 +135,16 @@ $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/ep
 $router->create("POST", "/dashboard/series/{uuid}/temporadas/{temporada_uuid}/episodios/{episodio_uuid}/deletar", [$episodioController, 'destroy'], $auth, $admin);
 $router->create("GET", "/series/{uuid}/{uuid_episodio}", [$episodioController, 'viewEpisode'], $auth);
 
+//colecoes
+$router->create("GET", "/dashboard/colecoes", [$colecaoController, 'index'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/cadastro", [$colecaoController, 'create'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/cadastro", [$colecaoController, 'store'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/{uuid}/editar", [$colecaoController, 'edit'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/editar", [$colecaoController, 'update'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/deletar", [$colecaoController, 'destroy'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/{uuid}/filmes", [$colecaoController, 'moviesInCollection'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/{uuid}/filmes/ativos", [$colecaoController, 'allActiveMovies'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/filmes/{filme_uuid}/inserir", [$colecaoController, 'insertInCollection'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/filmes/{filme_uuid}/remover", [$colecaoController, 'removeOfCollection'], $auth, $admin);
 
 return $router;

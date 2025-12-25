@@ -48,6 +48,7 @@
                                 <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="/dashboard/filmes">Filmes</a></li>
                                 <li><a class="dropdown-item" href="/dashboard/series">Séries</a></li>
+                                <li><a class="dropdown-item" href="/dashboard/colecoes">Coleções</a></li>
                             </ul>
                         </li>
 

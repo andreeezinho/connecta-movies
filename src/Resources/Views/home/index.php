@@ -83,7 +83,7 @@
         </div>
 
         <div class="border-bottom">
-            <h1>Filmes</h1>
+            <h3>Filmes</h3>
             <p class="text-muted">Alguns filmes para você</p>
         </div>
 
@@ -114,7 +114,7 @@
         </div>
 
         <div class="border-bottom mt-5">
-            <h1>Séries</h1>
+            <h3>Séries</h3>
             <p class="text-muted">Algumas de nossas séries!</p>
         </div>
 
@@ -145,14 +145,49 @@
         </div>
 
         <?php
-            if(isset($_SESSION['user'])){
+            if(count($collections) > 0){
+                foreach($collections as $collection){
+        ?>  
+            <div class="border-bottom mt-5">
+                <h3 class="mb-1"><?= $collection->nome ?></h3>
+                <p class="text-muted m-0"><small><?= $collection->descricao ?></small></p>
+            </div>
+
+            <div class="row mt-3 g-3 pb-4 border rounded bg-light">
+                <div class="slick-slider">
+                    <?php
+                        if(count($collection_movies) > 0){
+                            foreach($collection_movies as $filme){
+                                if($collection->id == $filme->colecoes_id){
+                    ?>
+                        <div class="mx-3">
+                            <a href="/filmes/<?= $filme->filme_uuid ?>/infos" class="border-0">
+                                <img src="/public/img/conteudos/capas/filmes/<?= $filme->imagem ?>" class="capa hover-border" alt="<?= $filme->filme_nome ?>">
+                            </a>
+                        </div>
+                    <?php
+                                }
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+        <?php
+                }
+            }
+        ?>
+
+        <?php
+            if(isset($_SESSION['user']) && (count($lista_filmes) > 0 || count($lista_series) > 0)){
         ?>
             <div class="mt-5">
-                <h1>Minha Lista</h1>
+                <h3>Minha Lista</h3>
             </div>
 
             <div class="bg-light rounded border p-4">
-                <p class="text-muted border-bottom">Filmes</p>
+                <div class="border-bottom mt-2 m-0">
+                    <p class="text-muted m-0">Filmes</p>
+                </div>
                 <div class="row mt-3 g-3 pb-4">
                     <div class="slick-slider">
                         <?php
@@ -168,7 +203,7 @@
                                 }
                             }else{
                         ?>
-                            <p class="text-muted">Ainda não há filmes...</p>
+                            <p class="text-muted">Ainda não há filmes na lista...</p>
                         <?php
                             }
                         ?>
@@ -176,7 +211,7 @@
                 </div>
 
                 <div class="border-bottom mt-2">
-                    <p class="text-muted">Séries</p>
+                    <p class="text-muted m-0">Séries</p>
                 </div>
 
                 <div class="row mt-3 g-3 pb-4">
@@ -194,7 +229,7 @@
                                 }
                             }else{
                         ?>
-                            <p class="text-muted">Ainda não há filmes...</p>
+                            <p class="text-muted">Ainda não há séries na lista...</p>
                         <?php
                             }
                         ?>

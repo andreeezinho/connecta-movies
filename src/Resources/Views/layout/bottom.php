@@ -19,6 +19,7 @@
       infinite: true,     
       dots: false,
       arrows: true,
+      centerMode: false,
       responsive: [
         {
           breakpoint: 1200,
