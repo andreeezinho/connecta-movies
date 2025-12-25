@@ -22,6 +22,8 @@ use App\Interfaces\Episodio\IAssistido;
 use App\Repositories\Episodio\AssistidoRepository;
 use App\Interfaces\Colecao\IColecao;
 use App\Repositories\Colecao\ColecaoRepository;
+use App\Interfaces\Colecao\IColecaoFilme;
+use App\Repositories\Colecao\ColecaoFilmeRepository;
 
 class DependencyProvider {
 
@@ -91,6 +93,12 @@ class DependencyProvider {
             ->set(
                 IColecao::class,
                 new ColecaoRepository()
+            );
+
+        $this->container
+            ->set(
+                IColecaoFilme::class,
+                new ColecaoFilmeRepository()
             );
 
     }

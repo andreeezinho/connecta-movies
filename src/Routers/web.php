@@ -142,5 +142,9 @@ $router->create("POST", "/dashboard/colecoes/cadastro", [$colecaoController, 'st
 $router->create("GET", "/dashboard/colecoes/{uuid}/editar", [$colecaoController, 'edit'], $auth, $admin);
 $router->create("POST", "/dashboard/colecoes/{uuid}/editar", [$colecaoController, 'update'], $auth, $admin);
 $router->create("POST", "/dashboard/colecoes/{uuid}/deletar", [$colecaoController, 'destroy'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/{uuid}/filmes", [$colecaoController, 'moviesInCollection'], $auth, $admin);
+$router->create("GET", "/dashboard/colecoes/{uuid}/filmes/ativos", [$colecaoController, 'allActiveMovies'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/filmes/{filme_uuid}/inserir", [$colecaoController, 'insertInCollection'], $auth, $admin);
+$router->create("POST", "/dashboard/colecoes/{uuid}/filmes/{filme_uuid}/remover", [$colecaoController, 'removeOfCollection'], $auth, $admin);
 
 return $router;
